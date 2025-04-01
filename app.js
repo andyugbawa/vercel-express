@@ -1,3 +1,6 @@
+require("dotenv").config();
+// console.log("MONGO_URI:", process.env.MONGO_URI);
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -26,14 +29,14 @@ app.set("views", path.join(__dirname,"views"))
 
 
 
-// app.get("/",(req,res)=>{
-//     res.render("home")
-// })
-
-app.get("/",async(req,res)=>{
-    const movies = await Film.find({})
-    res.render("movie/index",{movies})
+app.get("/",(req,res)=>{
+    res.render("home")
 })
+
+// app.get("/",async(req,res)=>{
+//     const movies = await Film.find({})
+//     res.render("movie/index",{movies})
+// })
 
 
 
