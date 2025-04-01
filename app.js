@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+const Film = require("./models/movie");
 
 
 
@@ -25,8 +26,13 @@ app.set("views", path.join(__dirname,"views"))
 
 
 
-app.get("/",(req,res)=>{
-    res.render("home")
+// app.get("/",(req,res)=>{
+//     res.render("home")
+// })
+
+app.get("/",async(req,res)=>{
+    const movies = await Film.find({})
+    res.render("movie/index",{movies})
 })
 
 
