@@ -12,10 +12,9 @@ const methodOverride = require("method-override")
 
 
 mongoose
-  .connect("mongodb+srv://andyugbawa:boxoffice@cluster0.koc4i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/moviestate", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect("mongodb+srv://andyugbawa:hero@cluster0.9fppg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",{dbName:"moviestate"} 
+   
+  )
   .then(() => console.log("✅ MongoDB Connected!"))
   .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
