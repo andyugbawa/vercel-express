@@ -68,11 +68,11 @@ app.put("/movie/:id",async(req,res)=>{
   res.redirect(`/movie/${movie._id}`)
 });
 
-// app.delete("/movie/:id",async(req,res)=>{
-//   const{id}=req.params
-//    await Film.findByIdAndDelete(id)
-//   res.redirect("/")
-// })
+app.delete("/movie/:id",async(req,res)=>{
+  const{id}=req.params
+   await Film.findByIdAndDelete(id)
+  res.redirect("/")
+})
 
 
 app.listen(4001,()=>{
