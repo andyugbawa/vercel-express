@@ -36,14 +36,14 @@ app.use(methodOverride("_method"))
 // })
 
 app.get("/",async(req,res)=>{
-    // const movies = await Film.find({})
-    res.render("movie/index")
-    // res.render("movie/index",{movies})
+    const movies = await Film.find({})
+    // res.render("movie/index")
+    res.render("movie/index",{movies})
 });
 
 app.get("/new",(req,res)=>{
-  // res.render("movie/new")
-  res.send("New")
+  res.render("movie/new")
+  // res.send("New")
 })
 
 // app.post("/movie",async(req,res)=>{
