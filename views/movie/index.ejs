@@ -6,10 +6,14 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h1>INDEX PAGE</h1>
+    <h1>ALL MOVIES</h1>
 
     <% for(let movie of movies){ %>
-       <li><%= movie.title %></li>
+       <li><a href="/movie/<%= movie._id %>"><%= movie.title %></a></li>
     <% } %>
+       <div>
+
+           <a href="/movie/new">Request a Movie </a>
+       </div>
 </body>
 </html>

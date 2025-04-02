@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>EDIT PAGE</h1>
+    <form action="/movie/<%= movie._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="movie[title]" id="title" placeholder="title" value="<%=movie.title %>">
+        </div>
+        <div>
+            <label for="genre">Genre</label>
+            <input type="text" name="movie[genre]" id="genre" placeholder="genre" value="<%=movie.genre %>" >
+        </div>
+        <div>
+            <label for="year">Year</label>
+            <input type="number" name="movie[year]" id="year" placeholder="year" value="<%=movie.year %>">
+        </div>
+        <button>Submit</button>
+
+        <a href="/movie">ALL MOVIES</a>
+    </form>
+    <a href="/movie/<%= movie._id %>">Back to movies</a>
+</body>
+</html>
