@@ -41,7 +41,7 @@ app.get("/",async(req,res)=>{
     // res.render("movie/index",{movies})
 });
 
-app.get("/movie/new",(req,res)=>{
+app.get("/new",(req,res)=>{
   res.render("movie/new")
 })
 
