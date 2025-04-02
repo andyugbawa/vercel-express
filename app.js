@@ -12,7 +12,7 @@ const methodOverride = require("method-override")
 
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/movieState ", {
+  .connect("mongodb+srv://andyugbawa:boxoffice@cluster0.koc4i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/moviestate", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
