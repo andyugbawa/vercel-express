@@ -41,16 +41,16 @@ app.get("/",async(req,res)=>{
     // res.render("movie/index")
 });
 
-app.get("/new",(req,res)=>{
+app.get("/movie/new",(req,res)=>{
   res.render("movie/new")
   // res.send("New")
 })
 
-// app.post("/movie",async(req,res)=>{
-//   const movie = new Film(req.body.movie)
-//   await movie.save()
-//   res.redirect(`/movie/${movie._id}`)
-// })
+app.post("/movie",async(req,res)=>{
+  const movie = new Film(req.body.movie)
+  await movie.save()
+  res.redirect(`/movie/${movie._id}`)
+})
 
 app.get("/movie/:id",async(req,res)=>{
   const movie = await Film.findById(req.params.id)
