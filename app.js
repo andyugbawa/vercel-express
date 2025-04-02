@@ -57,16 +57,16 @@ app.get("/movie/:id",async(req,res)=>{
   res.render("movie/show",{movie})
 })
 
-// app.get("/movie/:id/edit",async(req,res)=>{
-//   const movie = await Film.findById(req.params.id)
-//   res.render("movie/edit",{movie})
-// });
+app.get("/movie/:id/edit",async(req,res)=>{
+  const movie = await Film.findById(req.params.id)
+  res.render("movie/edit",{movie})
+});
 
-// app.put("/movie/:id",async(req,res)=>{
-//   const{id}=req.params
-//   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
-//   res.redirect(`/movie/${movie._id}`)
-// });
+app.put("/movie/:id",async(req,res)=>{
+  const{id}=req.params
+  const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
+  res.redirect(`/movie/${movie._id}`)
+});
 
 // app.delete("/movie/:id",async(req,res)=>{
 //   const{id}=req.params
