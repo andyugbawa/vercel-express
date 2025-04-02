@@ -35,9 +35,10 @@ app.use(methodOverride("_method"))
 //     res.render("home")
 // })
 
-app.get("/movie",async(req,res)=>{
-    const movies = await Film.find({})
-    res.render("movie/index",{movies})
+app.get("/",async(req,res)=>{
+    // const movies = await Film.find({})
+    res.render("movie/index")
+    // res.render("movie/index",{movies})
 });
 
 app.get("/movie/new",(req,res)=>{
@@ -69,7 +70,7 @@ app.put("/movie/:id",async(req,res)=>{
 app.delete("/movie/:id",async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
-  res.redirect("/movie")
+  res.redirect("/")
 })
 
 
