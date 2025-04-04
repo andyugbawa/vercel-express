@@ -1,0 +1,48 @@
+h1{
+    color:red;
+}
+
+.card-container{
+    padding: 20px 0 0 0;
+    display: flex;
+    gap:5px;
+}
+.card{
+    width:350px;
+    height: 450px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    
+}
+
+
+
+.card1{
+    width:350px;
+    height: 450px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    
+}
+
+.card2{
+    width:350px;
+    height: 450px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    
+}
+
+.card3{
+    width:350px;
+    height: 450px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    
+}
+
+.image{
+    width:320px;
+    height: 450px; 
+    border-radius: 10px;
+}
