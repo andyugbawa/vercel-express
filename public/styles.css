@@ -56,3 +56,17 @@ h1{
     display: flex;
     gap:5px;
 }
+
+
+.footer-container{
+    height: 50px;
+    background: grey;
+    margin-top: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 0 0;
+
+}
