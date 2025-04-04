@@ -22,6 +22,7 @@ h1{
     height: 450px;
     /* border: 2px solid black; */
     border-radius: 10px;
+    padding: 0 0 0 5px;
     
 }
 
@@ -30,6 +31,7 @@ h1{
     height: 450px;
     /* border: 2px solid black; */
     border-radius: 10px;
+    padding: 0 0 0 5px;
     
 }
 
@@ -38,11 +40,19 @@ h1{
     height: 450px;
     /* border: 2px solid black; */
     border-radius: 10px;
+    padding: 0 0 0 5px;
     
 }
 
 .image{
-    width:320px;
+    width:322px;
     height: 450px; 
     border-radius: 10px;
+}
+
+
+.card-container1{
+    padding: 20px 0 0 0;
+    display: flex;
+    gap:5px;
 }
