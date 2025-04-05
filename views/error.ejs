@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            display: flex;
+          justify-content: center;
+
+        }
+        .alert-success{
+          /* display: flex;
+          justify-content: center; */
+          padding-left: 20px;
+          width: 500px;
+          height: 400px;
+          background-color: palevioletred;
+        }
+
+        .alert-heading{
+            text-align: center;
+        }
+        p{
+            /* text-align: center;   */
+        }
+    </style>
+</head>
+<body>
+    
+
+<div class=" alert-success" role="alert">
+    <h4 class="alert-heading"><%= err.message %></h4>
+    <p><%= err.stack %></p>
+</div>
+</body>
+</html>
+
+
+

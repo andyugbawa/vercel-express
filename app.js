@@ -7,7 +7,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Film = require("./models/movie");
 const methodOverride = require("method-override");
-const catchAsync = require("./utils/catchAsync")
+const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 
 
 
@@ -50,7 +51,7 @@ app.get("/movie/new",(req,res)=>{
 })
 
 app.post("/movie",catchAsync(async(req,res,next)=>{
-  
+  if(!req.body.movie) throw new ExpressError("Invalid movie Data", 404)
     const movie = new Film(req.body.movie)
     await movie.save()
     res.redirect(`/movie/${movie._id}`)
@@ -81,10 +82,17 @@ app.delete("/movie/:id",catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
   res.redirect("/")
-}))
+}));
+
+app.all("*",(req,res,next)=>{
+  next(new ExpressError("Page Not Found",404))
+})
 
 app.use((err,req,res,next)=>{
-  res.send("SOMETHING WENT WRONG")
+  const { statusCode= 500}= err;
+  if(!err.message) err.message = "SOMETHING WENT WRONG"
+  res.status (statusCode).render("error",{err});
+
 })
 
 
