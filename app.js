@@ -6,7 +6,8 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const Film = require("./models/movie");
-const methodOverride = require("method-override")
+const methodOverride = require("method-override");
+const catchAsync = require("./utils/catchAsync")
 
 
 
@@ -37,46 +38,53 @@ app.use(methodOverride("_method"))
 //     res.render("home")
 // })
 
-app.get("/",async(req,res)=>{
+app.get("/",catchAsync(async(req,res)=>{
     const movies = await Film.find({})
     res.render("movie/index",{movies})
     // res.render("movie/index")
-});
+}));
 
 app.get("/movie/new",(req,res)=>{
   res.render("movie/new")
   // res.send("New")
 })
 
-app.post("/movie",async(req,res)=>{
-  const movie = new Film(req.body.movie)
-  await movie.save()
-  res.redirect(`/movie/${movie._id}`)
-})
+app.post("/movie",catchAsync(async(req,res,next)=>{
+  
+    const movie = new Film(req.body.movie)
+    await movie.save()
+    res.redirect(`/movie/${movie._id}`)
+
+ 
+}))
 
 
 
 
-app.get("/movie/:id",async(req,res)=>{
+app.get("/movie/:id",catchAsync(async(req,res)=>{
   const movie = await Film.findById(req.params.id)
   res.render("movie/show",{movie})
-})
+}))
 
-app.get("/movie/:id/edit",async(req,res)=>{
+app.get("/movie/:id/edit",catchAsync(async(req,res)=>{
   const movie = await Film.findById(req.params.id)
   res.render("movie/edit",{movie})
-});
+}));
 
-app.put("/movie/:id",async(req,res)=>{
+app.put("/movie/:id",catchAsync(async(req,res)=>{
   const{id}=req.params
   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
   res.redirect(`/movie/${movie._id}`)
-});
+}));
 
-app.delete("/movie/:id",async(req,res)=>{
+app.delete("/movie/:id",catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
   res.redirect("/")
+}))
+
+app.use((err,req,res,next)=>{
+  res.send("SOMETHING WENT WRONG")
 })
 
 
