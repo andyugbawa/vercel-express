@@ -9,6 +9,7 @@ const filmSchema = new Schema({
     title:{
         type:String,
         required:[true,"Title must not be blank"]
+    
     },
     genre:{
         type:String,
