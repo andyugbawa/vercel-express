@@ -7,6 +7,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Film = require("./models/movie");
 const methodOverride = require("method-override");
+const Joi = require("joi");
+const {movieSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
@@ -33,7 +35,16 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(methodOverride("_method"))
 
-
+const validateMovie = (req,res,next)=>{
+ 
+  const {error} = movieSchema.validate(req.body);
+  if(error){
+    const msg = error.details.map(el=>el.message).join(",")
+    throw new ExpressError(msg,400)
+  }else{
+    next();
+  }
+}
 
 // app.get("/",(req,res)=>{
 //     res.render("home")
@@ -50,8 +61,8 @@ app.get("/movie/new",(req,res)=>{
   // res.send("New")
 })
 
-app.post("/movie",catchAsync(async(req,res,next)=>{
-  if(!req.body.movie) throw new ExpressError("Invalid movie Data", 404)
+app.post("/movie",validateMovie,catchAsync(async(req,res,next)=>{
+  // if(!req.body.movie) throw new ExpressError("Invalid movie Data", 404)
     const movie = new Film(req.body.movie)
     await movie.save()
     res.redirect(`/movie/${movie._id}`)
@@ -72,7 +83,7 @@ app.get("/movie/:id/edit",catchAsync(async(req,res)=>{
   res.render("movie/edit",{movie})
 }));
 
-app.put("/movie/:id",catchAsync(async(req,res)=>{
+app.put("/movie/:id",validateMovie,catchAsync(async(req,res)=>{
   const{id}=req.params
   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
   res.redirect(`/movie/${movie._id}`)
