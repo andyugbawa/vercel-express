@@ -13,10 +13,9 @@ const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
 
-const MONGO_URI = process.env.VERCEL_ENV === 'production'
-? process.env.MONGO_URI_PROD
-: process.env.MONGO_URI_DEV;
-
+// const MONGO_URI = process.env.VERCEL_ENV === 'production'
+// ? process.env.MONGO_URI_PROD
+// : process.env.MONGO_URI_PROD;
 
 
     
@@ -27,6 +26,7 @@ const MONGO_URI = process.env.VERCEL_ENV === 'production'
 
 
 
+const MONGO_URI="mongodb+srv://andyugbawa:hero@cluster0.9fppg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
 
