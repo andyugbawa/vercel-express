@@ -18,7 +18,6 @@ const MONGO_URI = process.env.VERCEL_ENV === 'production'
 : process.env.MONGO_URI_DEV;
 
 
-// const andy = andy==="red"? "red":"b"
 
     
 // if (!process.env.MONGO_URI) {
@@ -26,10 +25,6 @@ const MONGO_URI = process.env.VERCEL_ENV === 'production'
 //   process.exit(1); // Stop the app if MONGO_URI is missing
 // }
 
-console.log( process.env);
-console.log(MONGO_URI)
-console.log(process.env.SYSTEMDRIVE)
-console.log(process.env.andy)
 
 
 
