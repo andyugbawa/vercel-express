@@ -13,14 +13,39 @@ const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
 
+const MONGO_URI = process.env.VERCEL_ENV === 'production'
+? process.env.MONGO_URI_PROD
+: process.env.MONGO_URI_DEV;
 
 
-mongoose
-  .connect("mongodb+srv://andyugbawa:hero@cluster0.9fppg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",{dbName:"moviestate"} 
-   
-  )
-  .then(() => console.log("✅ MongoDB Connected!"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+// const andy = andy==="red"? "red":"b"
+
+    
+// if (!process.env.MONGO_URI) {
+//   console.error("❌ MONGO_URI is missing in environment variables!");
+//   process.exit(1); // Stop the app if MONGO_URI is missing
+// }
+
+console.log( process.env);
+console.log(MONGO_URI)
+console.log(process.env.SYSTEMDRIVE)
+console.log(process.env.andy)
+
+
+
+
+
+  
+mongoose.connect(MONGO_URI, {
+  dbName: "moviestatetwo",
+
+})
+.then(() => console.log("✅ Connected to MongoDB successfully!"))
+.catch(err => {
+  console.error("❌ MongoDB Connection Error:", err);
+  process.exit(1);
+});
+
 
 
 
