@@ -13,22 +13,25 @@ const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
 
-// const MONGO_URI = process.env.VERCEL_ENV === 'production'
-// ? process.env.MONGO_URI_PROD
-// : process.env.MONGO_URI_PROD;
 
 
-    
-// if (!process.env.MONGO_URI) {
-//   console.error("❌ MONGO_URI is missing in environment variables!");
-//   process.exit(1); // Stop the app if MONGO_URI is missing
-// }
+ 
+
+
+const MONGO_URI = process.env.VERCEL_ENV === 'production'
+? process.env.MONGO_URI_PROD
+: process.env.MONGO_URI_DEV;
+
+
+ 
+if (!MONGO_URI) {
+  console.error("❌ MONGO_URI is missing in environment variables!");
+  process.exit(1);
+}
 
 
 
-const MONGO_URI="mongodb+srv://andyugbawa:hero@cluster0.9fppg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-
+console.log("Using Mongo URI:", MONGO_URI);
 
   
 mongoose.connect(MONGO_URI, {
@@ -40,6 +43,8 @@ mongoose.connect(MONGO_URI, {
   console.error("❌ MongoDB Connection Error:", err);
   process.exit(1);
 });
+
+
 
 
 
