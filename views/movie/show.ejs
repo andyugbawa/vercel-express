@@ -16,7 +16,7 @@
         .card-body{
             width: 300px;
             height: 70px;
-            border: 2px solid red; 
+            /* border: 2px solid red;  */
         }
         .show-container{
             display: flex;
@@ -78,6 +78,9 @@
             <div class="card-body">
                 <p>Rating:<%= review.rating %></p>
                 <p>Review:<%= review.body %></p>
+                <form action="/movie/<%= movie._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+                    <button>DELETE</button>
+                </form>
             </div>
 
         </div>

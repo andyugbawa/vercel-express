@@ -140,6 +140,13 @@ app.post("/movie/:id/review",validateReview,catchAsync(async(req,res)=>{
      res.redirect(`/movie/${movie._id}`)
 }))
 
+app.delete("/movie/:id/review/:reviewId",catchAsync(async(req,res)=>{
+  const {id,reviewId} = req.params;
+  await Film.findByIdAndUpdate(id,{$pul:{reviews:reviewId}})
+  await Review.findByIdAndDelete(reviewId)
+  res.redirect(`/movie/${id}`)
+}))
+
 app.all("*",(req,res,next)=>{
   next(new ExpressError("Page Not Found",404))
 })
