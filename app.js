@@ -9,7 +9,7 @@ const Film = require("./models/movie");
 const methodOverride = require("method-override");
 const Review = require("./models/review")
 const Joi = require("joi");
-const {movieSchema}=require("./schema.js")
+const {movieSchema,reviewSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
@@ -72,6 +72,16 @@ const validateMovie = (req,res,next)=>{
   }
 }
 
+const validateReview= (req,res,next)=>{
+  const {error} =reviewSchema.validate(req.body)
+  if(error){
+    const msg = error.details.map(el=>el.message).join(",")
+    throw new ExpressError(msg,400)
+  }else{
+    next();
+  }
+}
+
 // app.get("/",(req,res)=>{
 //     res.render("home")
 // })
@@ -121,7 +131,7 @@ app.delete("/movie/:id",catchAsync(async(req,res)=>{
   res.redirect("/")
 }));
 
-app.post("/movie/:id/review",catchAsync(async(req,res)=>{
+app.post("/movie/:id/review",validateReview,catchAsync(async(req,res)=>{
    const movie = await Film.findById(req.params.id)
    const review = new Review(req.body.review)
    movie.reviews.push(review)

@@ -24,7 +24,7 @@
         <a href="/">All movies</a>
     </footer>
 
-    <form action="/movie/<%= movie._id %>/review" method="POST">
+    <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
         <h2>Leave a Review</h2>
         <div>
             <div>
@@ -37,7 +37,7 @@
             <div>
                 <label for="body">Review</label>
             </div>
-         <textarea name="review[body]" cols="30" rows="3" id="body"></textarea>
+         <textarea name="review[body]" cols="30" rows="3" id="body" required></textarea>
         </div>
         <button>Submit</button>
     </form>
