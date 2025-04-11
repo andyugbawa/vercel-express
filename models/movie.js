@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Review = require("./review");
 const Schema = mongoose.Schema;
 
 
@@ -57,7 +58,15 @@ const filmSchema = new Schema({
 
  
 })
-
+  filmSchema.post("findOneAndDelete",async function(doc){
+     if(doc){
+      await Review.deleteMany({
+        _id:{
+          $in:doc.reviews
+        }
+      })
+     }
+  })
 
 const Film = mongoose.model("Film",filmSchema)
 
