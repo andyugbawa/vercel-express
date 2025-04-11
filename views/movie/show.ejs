@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .review-heading{
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Show Page</h1>
@@ -18,5 +23,23 @@
         <a href="/movie/<%= movie._id %>/edit">Edit</a>
         <a href="/">All movies</a>
     </footer>
+
+    <form action="">
+        <h2>Leave a Review</h2>
+        <div>
+            <div>
+                <label for="ratings">Ratings</label>
+
+            </div>
+            <input type="range" min="1" max="5" name="review[rating]" id="rating">
+        </div>
+        <div class="review-heading">
+            <div>
+                <label for="body">Review</label>
+            </div>
+         <textarea name="review[body]" cols="30" rows="3" id="body"></textarea>
+        </div>
+        <button>Submit</button>
+    </form>
 </body>
 </html>
