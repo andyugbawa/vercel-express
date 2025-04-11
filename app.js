@@ -110,7 +110,7 @@ app.post("/movie",validateMovie,catchAsync(async(req,res,next)=>{
 
 
 app.get("/movie/:id",catchAsync(async(req,res)=>{
-  const movie = await Film.findById(req.params.id)
+  const movie = await Film.findById(req.params.id).populate("reviews")
   res.render("movie/show",{movie})
 }))
 

@@ -41,5 +41,11 @@
         </div>
         <button>Submit</button>
     </form>
+    <% for(let review of movie.reviews) {%>
+        <div>
+            <p>Rating:<%= review.rating %></p>
+            <p>Review:<%= review.body %></p>
+        </div>
+    <% } %>
 </body>
 </html>
