@@ -7,6 +7,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Film = require("./models/movie");
 const methodOverride = require("method-override");
+const Review = require("./models/review")
 const Joi = require("joi");
 const {movieSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
@@ -119,6 +120,15 @@ app.delete("/movie/:id",catchAsync(async(req,res)=>{
    await Film.findByIdAndDelete(id)
   res.redirect("/")
 }));
+
+app.post("/movie/:id/review",catchAsync(async(req,res)=>{
+   const movie = await Film.findById(req.params.id)
+   const review = new Review(req.body.review)
+   movie.reviews.push(review)
+   await review.save();
+   await movie.save()
+     res.redirect(`/movie/${movie._id}`)
+}))
 
 app.all("*",(req,res,next)=>{
   next(new ExpressError("Page Not Found",404))
