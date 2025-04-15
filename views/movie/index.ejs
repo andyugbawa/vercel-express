@@ -8,9 +8,7 @@
 </head>
 <body>
     <h1>ALL MOVIES</h1>
-
     <div class="card-container">
-
         <div class="card">
            <img src="/image/in the lost lands.jpeg" alt="movies" class="image">
         </div>
@@ -24,9 +22,7 @@
          <img src="/image/mission impossible.jpeg" alt="movies" class="image">
         </div>
     </div>
-
     <div class="card-container1">
-
         <div class="card">
          <img src="/image/naked gun.jpeg" alt="movies" class="image">
         </div>
@@ -40,25 +36,13 @@
             <img src="/image/tron ares.jpeg" alt="movies" class="image">
            </div>
     </div>
-
-
-  
-
-      
-
     
     <% for(let movie of movies){ %>
         <li><a href="/movie/<%= movie._id %>"><%= movie.title %></a></li>
      <% } %>
         <div>
-
-
            <a href="/movie/new">Request a Movie </a>
        </div>
-
-
-
-       
     <footer class="footer-container">
         <div class="container">
             <span class="text-muted"> &copy;Movies 2025</span>
