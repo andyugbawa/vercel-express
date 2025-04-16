@@ -69,7 +69,7 @@ app.delete("/movie/:id/review/:reviewId",catchAsync(async(req,res)=>{
 }))
 
 app.get("/",(req,res)=>{
-  res.render("home")
+  res.redirect('/movie');
 })
 
 app.all("*",(req,res,next)=>{
