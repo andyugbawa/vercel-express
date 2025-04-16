@@ -9,6 +9,7 @@ const Review = require("./models/review")
 const Joi = require("joi");
 const {movieSchema,reviewSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
+const session  =require("express-session")
 const ExpressError = require("./utils/ExpressError");
 
 const movies = require("./routes/movies");
@@ -40,19 +41,26 @@ app.use(express.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(methodOverride("_method"))
+const sessionConfig = {
+  secret: "thisshouldbeabettersecrete", // ✅ correct key
+  resave: false,
+  saveUninitialized: true,
+  httpOnly:true,
+  cookie:{
+    expires: Date.now() + 1000*60*60*24*7,
+    maxAge:1000*60*60*24*7,
+  }
+}
+
+app.use(session(sessionConfig))
 
 
 app.use("/movie", movies);
 app.use("/movie/:id/review",reviews)
 
-
-
-
-
 app.get("/",(req,res)=>{
   res.redirect('/movie');
 })
-
 
 app.all("*",(req,res,next)=>{
   next(new ExpressError("Page Not Found",404))
