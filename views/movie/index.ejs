@@ -7,8 +7,22 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h1>ALL MOVIES</h1>
+   
+    
+    
+
+      <h1>ALL MOVIES</h1>
+      
+      <% if (success && success.length > 0) { %>
+        <div class="flash-message success">
+          <% success.forEach(msg => { %>
+            <p><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      
     <div class="card-container">
+      
         <div class="card">
            <img src="/image/in the lost lands.jpeg" alt="movies" class="image">
         </div>

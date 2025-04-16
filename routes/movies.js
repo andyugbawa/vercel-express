@@ -52,7 +52,8 @@ router.put("/:id",validateMovie,catchAsync(async(req,res)=>{
 router.delete("/:id",catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
-  res.redirect("/")
+   req.flash("success","Succesfully Deleted a Movie")
+   res.redirect("/movie")
 }));
 
 module.exports = router;
