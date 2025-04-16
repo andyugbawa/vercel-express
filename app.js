@@ -10,6 +10,7 @@ const Joi = require("joi");
 const {movieSchema,reviewSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
 const session  =require("express-session")
+const flash = require("connect-flash")
 const ExpressError = require("./utils/ExpressError");
 
 const movies = require("./routes/movies");
@@ -52,7 +53,14 @@ const sessionConfig = {
   }
 }
 
-app.use(session(sessionConfig))
+app.use(session(sessionConfig));
+app.use(flash());
+
+app.use((req,res,next)=>{
+ res.locals.success = req.flash("success");
+ res.locals.error = req.flash("error");
+ next();
+})
 
 
 app.use("/movie", movies);
