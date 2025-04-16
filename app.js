@@ -12,6 +12,7 @@ const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 
 const movies = require("./routes/movies");
+const reviews = require("./routes/reviews")
 
 
 const MONGO_URI = process.env.VERCEL_ENV === 'production'
@@ -40,37 +41,18 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(methodOverride("_method"))
 
-const validateReview= (req,res,next)=>{
-  const {error} =reviewSchema.validate(req.body)
-  if(error){
-    const msg = error.details.map(el=>el.message).join(",")
-    throw new ExpressError(msg,400)
-  }else{
-    next();
-  }
-}
 
-app.use("/movie", movies)
+app.use("/movie", movies);
+app.use("/movie/:id/review",reviews)
 
-app.post("/movie/:id/review",validateReview,catchAsync(async(req,res)=>{
-   const movie = await Film.findById(req.params.id)
-   const review = new Review(req.body.review)
-   movie.reviews.push(review)
-   await review.save();
-   await movie.save()
-     res.redirect(`/movie/${movie._id}`)
-}))
 
-app.delete("/movie/:id/review/:reviewId",catchAsync(async(req,res)=>{
-  const {id,reviewId} = req.params;
-  await Film.findByIdAndUpdate(id,{$pul:{reviews:reviewId}})
-  await Review.findByIdAndDelete(reviewId)
-  res.redirect(`/movie/${id}`)
-}))
+
+
 
 app.get("/",(req,res)=>{
   res.redirect('/movie');
 })
+
 
 app.all("*",(req,res,next)=>{
   next(new ExpressError("Page Not Found",404))
