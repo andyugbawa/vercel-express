@@ -15,6 +15,8 @@ const validateMovie = (req,res,next)=>{
   }
 }
 
+
+
 router.get("/",catchAsync(async(req,res)=>{
     const movies = await Film.find({})
     res.render("movie/index",{movies})

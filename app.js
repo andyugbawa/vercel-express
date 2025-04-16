@@ -68,6 +68,10 @@ app.delete("/movie/:id/review/:reviewId",catchAsync(async(req,res)=>{
   res.redirect(`/movie/${id}`)
 }))
 
+app.get("/",(req,res)=>{
+  res.send("HELLO WORLD")
+})
+
 app.all("*",(req,res,next)=>{
   next(new ExpressError("Page Not Found",404))
 })
