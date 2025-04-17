@@ -70,3 +70,21 @@ h1{
     padding: 20px 0 0 0;
 
 }
+
+
+
+@media (max-width:765px) {
+    h1{
+        text-align: center;
+    }
+    .card-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-container1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
