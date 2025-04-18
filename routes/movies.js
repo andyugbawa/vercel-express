@@ -23,11 +23,11 @@ router.get("/",catchAsync(async(req,res)=>{
     res.render("movie/index",{movies})
 }));
 
-router.get("/new",isLoggedIn,(req,res)=>{
+router.get("/new",(req,res)=>{
   res.render("movie/new")
 })
 
-router.post("/",isLoggedIn,validateMovie,catchAsync(async(req,res,next)=>{
+router.post("/",validateMovie,catchAsync(async(req,res,next)=>{
     const movie = new Film(req.body.movie)
     await movie.save()
     req.flash("success","Successfully created a New Movie!!!")
