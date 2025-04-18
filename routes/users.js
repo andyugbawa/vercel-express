@@ -29,6 +29,6 @@ router.get("/login",(req,res)=>{
 router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
  req.flash("success","WELCOME BACK");
  res.redirect("/movie")
-})
+});
 
 module.exports = router;
