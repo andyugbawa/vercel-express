@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <style>
+        .invalid-input {
+           border: 2px solid red;
+           background-color: #ffe6e6;
+       }
+       .valid-input {
+           border: 2px solid green;
+           background-color: #e6ffe6;
+       }
+   </style>
+
+</head>
+<body>
+    <h1>LOGIN PAGE</h1>
+
+    
+<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger">
+      <%= error %>
+    </div>
+  <% } %>
+    <form id="movieForm"     action="/login"  method="POST" >
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="username" required >
+           
+        </div>
+      
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="password" required>
+        </div>
+        <button>login</button>
+
+
+
+
+             
+    <script>
+        (function () {
+            'use strict'
+
+            const form = document.getElementById('movieForm');
+            const inputs = form.querySelectorAll('input');
+
+            form.addEventListener('submit', function (event) {
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        // Highlight invalid input
+                        input.classList.add('invalid-input');
+                        input.classList.remove('valid-input');
+                        isValid = false;
+                    } else {
+                        // Highlight valid input
+                        input.classList.remove('invalid-input');
+                        input.classList.add('valid-input');
+                    }
+                });
+
+                if (!isValid) {
+                    event.preventDefault(); // Prevent form submission if invalid
+                }
+            });
+
+            // Optional: Real-time validation on input
+            inputs.forEach(input => {
+                input.addEventListener('input', function () {
+                    if (input.value.trim()) {
+                        input.classList.remove('invalid-input');
+                        input.classList.add('valid-input');
+                    } else {
+                        input.classList.remove('valid-input');
+                        input.classList.add('invalid-input');
+                    }
+                });
+            });
+        })();
+        
+    </script>
+</body>
+</html>
