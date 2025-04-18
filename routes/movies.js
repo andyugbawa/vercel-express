@@ -39,18 +39,18 @@ router.get("/:id",catchAsync(async(req,res)=>{
   res.render("movie/show",{movie})
 }))
 
-router.get("/:id/edit",isLoggedIn,catchAsync(async(req,res)=>{
+router.get("/:id/edit",catchAsync(async(req,res)=>{
   const movie = await Film.findById(req.params.id)
   res.render("movie/edit",{movie})
 }));
 
-router.put("/:id",isLoggedIn,validateMovie,catchAsync(async(req,res)=>{
+router.put("/:id",validateMovie,catchAsync(async(req,res)=>{
   const{id}=req.params
   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
   res.redirect(`/movie/${movie._id}`)
 }));
 
-router.delete("/:id",isLoggedIn,catchAsync(async(req,res)=>{
+router.delete("/:id",catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
    req.flash("success","Succesfully Deleted a Movie")
@@ -58,3 +58,10 @@ router.delete("/:id",isLoggedIn,catchAsync(async(req,res)=>{
 }));
 
 module.exports = router;
+
+
+
+
+
+//  REMEMBER TO INSERT ISLOGGEDIN MIDLLEWARE IN THE ROUTES WATCH VIDEO 510 AGAIN
+// BECAUSE YOU REMOVED ISLOGGEDIN MIDDLEWARE IN 
