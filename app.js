@@ -16,8 +16,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local")
 const User = require("./models/user");
 
-const movies = require("./routes/movies");
-const reviews = require("./routes/reviews")
+const userRoutes = require("./routes/users")
+const moviesRoutes = require("./routes/movies");
+const reviewsRoutes = require("./routes/reviews")
 
 
 const MONGO_URI = process.env.VERCEL_ENV === 'production'
@@ -71,9 +72,9 @@ app.use((req,res,next)=>{
  next();
 })
 
-
-app.use("/movie", movies);
-app.use("/movie/:id/review",reviews)
+app.use("/",userRoutes);
+app.use("/movie", moviesRoutes);
+app.use("/movie/:id/review",reviewsRoutes)
 
 app.get("/",(req,res)=>{
   res.redirect('/movie');
