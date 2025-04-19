@@ -16,14 +16,25 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local")
 const User = require("./models/user");
 
+
 const userRoutes = require("./routes/users")
 const moviesRoutes = require("./routes/movies");
 const reviewsRoutes = require("./routes/reviews")
 
 
-const MONGO_URI = process.env.VERCEL_ENV === 'production'
-? process.env.MONGO_URI_PROD
-: process.env.MONGO_URI_DEV;
+
+
+// const MONGO_URI = process.env.VERCEL_ENV === 'production'
+// ? process.env.MONGO_URI_PROD
+// : process.env.MONGO_URI_DEV;
+
+const isProduction = process.env.VERCEL_ENV === 'production';
+
+
+const MONGO_URI = isProduction
+  ? process.env.MONGO_URI_PROD
+  : process.env.MONGO_URI_DEV;
+
  
 if (!MONGO_URI) {
   console.error("❌ MONGO_URI is missing in environment variables!");
@@ -46,16 +57,25 @@ app.use(express.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(methodOverride("_method"))
+
+
+
+
+
 const sessionConfig = {
   secret: "thisshouldbeabettersecrete", // ✅ correct key
   resave: false,
   saveUninitialized: true,
   httpOnly:true,
+  secure:isProduction,
+  sameSite: 'lax',
   cookie:{
     expires: Date.now() + 1000*60*60*24*7,
     maxAge:1000*60*60*24*7,
   }
 }
+
+
 
 app.use(session(sessionConfig));
 app.use(flash());
