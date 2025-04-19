@@ -15,9 +15,12 @@
         <h1>MOVIE</h1>
     </div>
     <div class="reg-logo">
+      <% if(!currentUser){ %>
       <a href="/register">Register</a>
       <a href="/login">Login</a>
+      <% }else {%>
       <a href="/logout">Logout</a>
+      <% } %>
 
     </div>
 </nav>  
