@@ -15,6 +15,7 @@ const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
 const LocalStrategy = require("passport-local")
 const User = require("./models/user");
+const MongoStore = require('connect-mongo');
 
 
 const userRoutes = require("./routes/users")
@@ -62,18 +63,32 @@ app.use(methodOverride("_method"))
 
 
 
+// const sessionConfig = {
+//   secret: "thisshouldbeabettersecrete", // ✅ correct key
+//   resave: false,
+//   saveUninitialized: true,
+//   httpOnly:true,
+//   secure:isProduction,
+//   sameSite: 'lax',
+//   cookie:{
+//     expires: Date.now() + 1000*60*60*24*7,
+//     maxAge:1000*60*60*24*7,
+//   }
+// }
+
 const sessionConfig = {
-  secret: "thisshouldbeabettersecrete", // ✅ correct key
+  store: MongoStore.create({ mongoUrl: MONGO_URI }),
+  name: 'session',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  httpOnly:true,
-  secure:isProduction,
-  sameSite: 'lax',
-  cookie:{
-    expires: Date.now() + 1000*60*60*24*7,
-    maxAge:1000*60*60*24*7,
+  cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'lax', 
+      maxAge: 1000 * 60 * 60 * 24 * 7 
   }
-}
+};
 
 
 
