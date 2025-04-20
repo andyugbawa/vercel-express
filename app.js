@@ -1,83 +1,50 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
+
 const path = require("path");
 const mongoose = require("mongoose");
 const Film = require("./models/movie");
 const methodOverride = require("method-override");
-const Review = require("./models/review")
+const Review = require("./models/review");
 const Joi = require("joi");
 const {movieSchema,reviewSchema}=require("./schema.js")
 const catchAsync = require("./utils/catchAsync");
-const session  =require("express-session")
-const flash = require("connect-flash")
+const session = require("express-session");
+const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
-const LocalStrategy = require("passport-local")
+const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const MongoStore = require('connect-mongo');
 
 
-const userRoutes = require("./routes/users")
+const userRoutes = require("./routes/users");
 const moviesRoutes = require("./routes/movies");
-const reviewsRoutes = require("./routes/reviews")
+const reviewsRoutes = require("./routes/reviews");
 
-
-
-
-// const MONGO_URI = process.env.VERCEL_ENV === 'production'
-// ? process.env.MONGO_URI_PROD
-// : process.env.MONGO_URI_DEV;
-
-const isProduction = process.env.VERCEL_ENV === 'production';
-
-
-const MONGO_URI = isProduction
-  ? process.env.MONGO_URI_PROD
-  : process.env.MONGO_URI_DEV;
-
- 
-if (!MONGO_URI) {
-  console.error("❌ MONGO_URI is missing in environment variables!");
-  process.exit(1);
-}
-console.log("Using Mongo URI:", MONGO_URI);
-
-mongoose.connect(MONGO_URI, {
-  dbName: "moviestatetwo",
-})
-.then(() => console.log("✅ Connected to MongoDB successfully!"))
-.catch(err => {
-  console.error("❌ MongoDB Connection Error:", err);
-  process.exit(1);
+const MONGODB_URI = process.env.MONGODB_URI_PROD;  
+console.log(MONGODB_URI)
+mongoose.connect(MONGODB_URI, {dbName : 'moviestatetwo'},  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Connection error:', err);
 });
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+const app = express();
 
 const absolutepath = path.join(__dirname, "./public");
 app.use(express.static(absolutepath));
 app.use(express.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
-app.use(methodOverride("_method"))
-
-
-
-
-
-// const sessionConfig = {
-//   secret: "thisshouldbeabettersecrete", // ✅ correct key
-//   resave: false,
-//   saveUninitialized: true,
-//   httpOnly:true,
-//   secure:isProduction,
-//   sameSite: 'lax',
-//   cookie:{
-//     expires: Date.now() + 1000*60*60*24*7,
-//     maxAge:1000*60*60*24*7,
-//   }
-// }
+app.use(methodOverride("_method"));
+app.set('trust proxy', 1);
 
 const sessionConfig = {
-  store: MongoStore.create({ mongoUrl: MONGO_URI }),
+  store: MongoStore.create({ mongoUrl: MONGODB_URI }),
   name: 'session',
   secret: process.env.SESSION_SECRET,
   resave: false,
