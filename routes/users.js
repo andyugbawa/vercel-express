@@ -16,7 +16,7 @@ router.post("/register",catchAsync(async(req,res,next)=>{
       req.login(registeredUser,err=>{
          if(err)return next(err)
             console.log(registeredUser);
-            req.flash("success","WELCOME TO MOVIES")
+            req.flash("success",`WELCOME, ${registeredUser.username.toUpperCase()}`)
             res.redirect("/movie")
       })
    }catch(e){
@@ -30,19 +30,36 @@ router.get("/login",(req,res)=>{
 })
 
 router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
- req.flash("success","WELCOME BACK");
+ req.flash("success", `WELCOME BACK, ${req.user.username.toUpperCase()}`);
  const redirectUrl = req.session.returnTo || "/movie";
  delete req.session.returnTo
  res.redirect(redirectUrl)
 });
 
+// router.get("/logout", (req, res, next) => {
+//    req.logout(function(err) {
+//        if (err) { return next(err); }
+//        req.flash("success", "Goodbye");
+//        res.redirect("/movie");
+//    });
+// });
+
 router.get("/logout", (req, res, next) => {
+   const username = req.user?.username; // Get the username before logout
+
    req.logout(function(err) {
-       if (err) { return next(err); }
-       req.flash("success", "Goodbye");
+       if (err) return next(err);
+
+       if (username) {
+           req.flash("success", `GOODBYE, ${username.toUpperCase()}!`);
+       } else {
+           req.flash("success", "GOODBYE!");
+       }
+
        res.redirect("/movie");
    });
 });
+
 
 
 
