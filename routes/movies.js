@@ -31,7 +31,7 @@ router.post("/",isLoggedIn,validateMovie,catchAsync(async(req,res,next)=>{
     const movie = new Film(req.body.movie)
     movie.author = req.user._id;
     await movie.save()
-    req.flash("success","Successfully created a New Movie!!!")
+    req.flash("success","SUCCESSFULY CREATED A NEW MOVIE!!!")
     res.redirect(`/movie/${movie._id}`)
 }))
 
@@ -54,7 +54,7 @@ router.put("/:id",isLoggedIn,validateMovie,catchAsync(async(req,res)=>{
 router.delete("/:id",isLoggedIn,catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
-   req.flash("success","Succesfully Deleted a Movie")
+   req.flash("success","SUCCESSFULLY DELETED A MOVIE")
    res.redirect("/movie")
 }));
 
