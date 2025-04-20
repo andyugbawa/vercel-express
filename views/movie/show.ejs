@@ -37,6 +37,14 @@
             <h1><%= movie.title %></h1>
             <h2><%= movie.genre %></h2>
             <p><%= movie.year %></p>
+           
+            <% if (movie.author) { %>
+                <p>Requested by: <%= movie.author.username %></p>
+              <% } else { %>
+                <p>Uploaded by: Unknown</p>
+              <% } %>
+              
+              
             <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
                 <button>DELETE</button>
             </form>

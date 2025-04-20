@@ -25,6 +25,10 @@ const filmSchema = new Schema({
         max: [new Date().getFullYear(), "The year must not be in the future"],
         
     },
+    author:{
+       type:Schema.Types.ObjectId,
+       ref:"User"
+    },
 
       reviews:[
         {
