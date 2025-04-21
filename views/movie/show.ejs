@@ -59,18 +59,15 @@
 
 
             <footer>
-                <!-- <a href="/movie/<%= movie._id %>/edit">Edit</a> -->
                 <a href="/movie">All movies</a>
             </footer>
 
 
         </div>
        
-        
-          
-          
-
        <div class="review-content">
+
+           <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
                <h2>Leave a Review</h2>
                <div>
@@ -88,6 +85,7 @@
                </div>
                <button>Submit</button>
            </form>
+           <% } %>
 
 
                   

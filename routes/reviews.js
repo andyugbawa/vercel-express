@@ -4,7 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const Film = require("../models/movie");
 const Review = require("../models/review")
 const ExpressError = require("../utils/ExpressError");
-const {validateReview}= require("../middleware")
+const {validateReview,isLoggedIn}= require("../middleware")
 const {reviewSchema}=require("../schema.js") 
 
 
@@ -13,9 +13,10 @@ const {reviewSchema}=require("../schema.js")
 
 
 
-router.post("/",validateReview,catchAsync(async(req,res)=>{
+router.post("/",isLoggedIn,validateReview,catchAsync(async(req,res)=>{
    const movie = await Film.findById(req.params.id)
    const review = new Review(req.body.review)
+   review.author = req.user._id;
    movie.reviews.push(review)
    await review.save();
    await movie.save()
