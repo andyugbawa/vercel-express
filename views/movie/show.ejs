@@ -26,6 +26,9 @@
         .review-content{
             margin-top: 10px;
         }
+        .request{
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -39,7 +42,7 @@
             <p><%= movie.year %></p>
            
             <% if (movie.author) { %>
-                <p>Requested by: <%= movie.author.username %></p>
+                <p class="request">Requested by: <%= movie.author.username.toUpperCase() %></p>
               <% } else { %>
                 <p>Uploaded by: Unknown</p>
               <% } %>
