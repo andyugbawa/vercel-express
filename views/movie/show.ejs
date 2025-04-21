@@ -46,13 +46,19 @@
               <% } else { %>
                 <p>Uploaded by: Unknown</p>
               <% } %>
-              
-              
-            <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
-                <button>DELETE</button>
-            </form>
+
+              <% if(currentUser && movie.author.equals(currentUser._id)) {%>
+              <div class="control-buttons">
+                  <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
+                      <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                      <button>DELETE</button>
+                  </form>
+              </div>
+              <% } %>
+
+
             <footer>
-                <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                <!-- <a href="/movie/<%= movie._id %>/edit">Edit</a> -->
                 <a href="/movie">All movies</a>
             </footer>
 
