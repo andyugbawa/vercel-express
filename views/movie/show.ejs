@@ -69,7 +69,6 @@
             </footer>
         </div>
        <div class="review-content">
-             <%= success %>
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
                <h2>Leave a Review</h2>
