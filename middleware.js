@@ -41,6 +41,24 @@ module.exports.isReviewAuthor = async(req,res,next)=>{
   next();
 }
 
+// module.exports.isReviewAuthor = async (req, res, next) => {
+//     const { id, reviewId } = req.params;
+//     const review = await Review.findById(reviewId);
+    
+//     if (!review) {
+//       req.flash("error", "Review not found.");
+//       return res.redirect(`/movie/${id}`);
+//     }
+  
+//     if (!review.author.equals(req.user._id)) {
+//       req.flash("error", "YOU DO NOT HAVE PERMISSION TO EDIT THIS REVIEW");
+//       return res.redirect(`/movie/${id}`);
+//     }
+  
+//     next();
+//   };
+  
+
 module.exports.validateMovie = (req,res,next)=>{
   const {error} = movieSchema.validate(req.body);
   if(error){

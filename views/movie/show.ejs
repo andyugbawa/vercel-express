@@ -38,8 +38,13 @@
 
     <div class="show-container">
         <div class="show-content">
-            <%= success %>
-            <%= error %>
+            <% if (success) { %>
+                <div class="alert success"><%= success %></div>
+              <% } %>
+              <% if (error) { %>
+                <div class="alert error"><%= error %></div>
+              <% } %>
+              
             <h1>Show Page</h1>
             <h1><%= movie.title %></h1>
             <h2><%= movie.genre %></h2>
@@ -64,6 +69,7 @@
             </footer>
         </div>
        <div class="review-content">
+             <%= success %>
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
                <h2>Leave a Review</h2>
