@@ -1,4 +1,4 @@
-const ExpressError = require("../utils/ExpressError");
+const ExpressError = require("./utils/ExpressError");
 const {movieSchema,reviewSchema} = require("./schema.js");
 const Film = require("./models/movie");
 
