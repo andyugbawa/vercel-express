@@ -29,12 +29,33 @@ router.get("/login",(req,res)=>{
    res.render("users/login")
 })
 
-router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
- req.flash("success", `WELCOME BACK, ${req.user.username.toUpperCase()}`);
- const redirectUrl = req.session.returnTo || "/movie";
- delete req.session.returnTo
- res.redirect(redirectUrl)
-});
+// router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
+//  req.flash("success", `WELCOME BACK, ${req.user.username.toUpperCase()}`);
+//  const redirectUrl = req.session.returnTo || "/movie";
+//  delete req.session.returnTo
+//  res.redirect(redirectUrl)
+// });
+
+router.post("/login", (req, res, next) => {
+   passport.authenticate("local", (err, user, info) => {
+     if (err) return next(err);
+     
+     if (!user) {
+       // User not found or password incorrect
+       req.flash("error", "Invalid credentials. Don’t have an account? Register below.");
+       return res.redirect("/register");
+     }
+ 
+     req.login(user, (err) => {
+       if (err) return next(err);
+       req.flash("success", `WELCOME BACK, ${user.username.toUpperCase()}`);
+       const redirectUrl = req.session.returnTo || "/movie";
+       delete req.session.returnTo;
+       return res.redirect(redirectUrl);
+     });
+   })(req, res, next);
+ });
+ 
 
 // router.get("/logout", (req, res, next) => {
 //    req.logout(function(err) {
