@@ -1,6 +1,7 @@
 const ExpressError = require("./utils/ExpressError");
 const {movieSchema,reviewSchema} = require("./schema.js");
 const Film = require("./models/movie");
+const Review = require("./models/review")
 
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
@@ -24,6 +25,16 @@ module.exports.isAuthor = async(req,res,next)=>{
   const {id}= req.params;
   const movie  = await Film.findById(id);
   if(!movie.author.equals(req.user._id)){
+    req.flash("error","YOU DO NOT HAVE PERMISSION TO EDIT THIS MOVIE")
+    return res.redirect(`/movie/${id}`)
+  }
+  next();
+}
+
+module.exports.isReviewAuthor = async(req,res,next)=>{
+  const {id,reviewId}= req.params;
+  const review  = await Review.findById(reviewId);
+  if(!review.author.equals(req.user._id)){
     req.flash("error","YOU DO NOT HAVE PERMISSION TO EDIT THIS MOVIE")
     return res.redirect(`/movie/${id}`)
   }

@@ -4,7 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const Film = require("../models/movie");
 const Review = require("../models/review")
 const ExpressError = require("../utils/ExpressError");
-const {validateReview,isLoggedIn}= require("../middleware")
+const {validateReview,isLoggedIn,isReviewAuthor}= require("../middleware")
 const {reviewSchema}=require("../schema.js") 
 
 
@@ -24,7 +24,7 @@ router.post("/",isLoggedIn,validateReview,catchAsync(async(req,res)=>{
      res.redirect(`/movie/${movie._id}`)
 }))
 
-router.delete("/:reviewId",catchAsync(async(req,res)=>{
+router.delete("/:reviewId",isLoggedIn,isReviewAuthor,catchAsync(async(req,res)=>{
   const {id,reviewId} = req.params;
   await Film.findByIdAndUpdate(id,{$pul:{reviews:reviewId}})
   await Review.findByIdAndDelete(reviewId)

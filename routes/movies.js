@@ -29,7 +29,14 @@ router.post("/",isLoggedIn,validateMovie,catchAsync(async(req,res,next)=>{
 }))
 
 router.get("/:id",catchAsync(async(req,res)=>{
-  const movie = await Film.findById(req.params.id).populate("reviews").populate("author");
+  const movie = await Film.findById(req.params.id).populate({
+    path:"reviews",
+    populate:{
+      path:"author"
+    }
+  }).populate("author");
+  console.log(movie)
+    
   res.render("movie/show",{movie})
 }))
 

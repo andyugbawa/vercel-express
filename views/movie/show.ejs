@@ -29,6 +29,9 @@
         .request{
             font-size: 18px;
         }
+        .Request-rev{
+            margin-top: 25px;
+        }
     </style>
 </head>
 <body>
@@ -56,17 +59,11 @@
                   </form>
               </div>
               <% } %>
-
-
             <footer>
                 <a href="/movie">All movies</a>
             </footer>
-
-
         </div>
-       
        <div class="review-content">
-
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
                <h2>Leave a Review</h2>
@@ -87,32 +84,22 @@
            </form>
            <% } %>
 
-
-                  
     <% for(let review of movie.reviews) {%>
         <div class="review-card">
             <div class="card-body">
+                <p class="Request-rev" >Requested by: <%= review.author.username.toUpperCase() %></p>
                 <p>Rating:<%= review.rating %></p>
                 <p>Review:<%= review.body %></p>
+                <% if(currentUser && review.author.equals(currentUser._id)) {%>
                 <form action="/movie/<%= movie._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
                     <button>DELETE</button>
                 </form>
+                <% } %>
             </div>
 
         </div>
     <% } %>
-
-       
-
-
-
        </div>
- 
-
     </div>
-
-
-
-
 </body>
 </html>
