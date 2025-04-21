@@ -4,19 +4,10 @@ const catchAsync = require("../utils/catchAsync");
 const Film = require("../models/movie");
 const Review = require("../models/review")
 const ExpressError = require("../utils/ExpressError");
+const {validateReview}= require("../middleware")
 const {reviewSchema}=require("../schema.js") 
 
 
-
-const validateReview= (req,res,next)=>{
-  const {error} =reviewSchema.validate(req.body)
-  if(error){
-    const msg = error.details.map(el=>el.message).join(",")
-    throw new ExpressError(msg,400)
-  }else{
-    next();
-  }
-}
 
 
 

@@ -1,3 +1,7 @@
+const ExpressError = require("../utils/ExpressError");
+const {movieSchema,reviewSchema} = require("./schema.js");
+const Film = require("./models/movie");
+
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.returnTo = req.originalUrl
@@ -13,4 +17,36 @@ module.exports.storeReturnTo = (req, res, next) => {
         res.locals.returnTo = req.session.returnTo;
     }
     next();
+}
+
+
+module.exports.isAuthor = async(req,res,next)=>{
+  const {id}= req.params;
+  const movie  = await Film.findById(id);
+  if(!movie.author.equals(req.user._id)){
+    req.flash("error","YOU DO NOT HAVE PERMISSION TO EDIT THIS MOVIE")
+    return res.redirect(`/movie/${id}`)
+  }
+  next();
+}
+
+module.exports.validateMovie = (req,res,next)=>{
+  const {error} = movieSchema.validate(req.body);
+  if(error){
+    const msg = error.details.map(el=>el.message).join(",")
+    throw new ExpressError(msg,400)
+  }else{
+    next();
+  }
+}
+
+
+module.exports.validateReview= (req,res,next)=>{
+  const {error} =reviewSchema.validate(req.body)
+  if(error){
+    const msg = error.details.map(el=>el.message).join(",")
+    throw new ExpressError(msg,400)
+  }else{
+    next();
+  }
 }

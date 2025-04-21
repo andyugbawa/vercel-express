@@ -4,17 +4,10 @@ const catchAsync = require("../utils/catchAsync");
 const ExpressError = require("../utils/ExpressError");
 const Film = require("../models/movie");
 const {movieSchema} = require("../schema.js");
-const {isLoggedIn} = require("../middleware") 
+const {isLoggedIn,isAuthor,validateMovie} = require("../middleware") 
 
-const validateMovie = (req,res,next)=>{
-  const {error} = movieSchema.validate(req.body);
-  if(error){
-    const msg = error.details.map(el=>el.message).join(",")
-    throw new ExpressError(msg,400)
-  }else{
-    next();
-  }
-}
+
+
 
 
 
@@ -40,18 +33,23 @@ router.get("/:id",catchAsync(async(req,res)=>{
   res.render("movie/show",{movie})
 }))
 
-router.get("/:id/edit",isLoggedIn,catchAsync(async(req,res)=>{
-  const movie = await Film.findById(req.params.id)
+router.get("/:id/edit",isLoggedIn,isAuthor,catchAsync(async(req,res)=>{
+  const movie = await Film.findById(req.params.id);
+  if(!movie){
+    req.flash("error", "CANNOT FIND MOVIE")
+    return res.redirect("/movie")
+  }
   res.render("movie/edit",{movie})
 }));
 
-router.put("/:id",isLoggedIn,validateMovie,catchAsync(async(req,res)=>{
-  const{id}=req.params
+router.put("/:id",isLoggedIn,isAuthor,validateMovie,catchAsync(async(req,res)=>{
+  const{id}=req.params;
   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
+  req.flash("success", "SUCCESSFULLY UPDATED MOVIE")
   res.redirect(`/movie/${movie._id}`)
 }));
 
-router.delete("/:id",isLoggedIn,catchAsync(async(req,res)=>{
+router.delete("/:id",isLoggedIn,isAuthor,catchAsync(async(req,res)=>{
   const{id}=req.params
    await Film.findByIdAndDelete(id)
    req.flash("success","SUCCESSFULLY DELETED A MOVIE")
