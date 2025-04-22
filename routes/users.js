@@ -2,32 +2,14 @@ const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
+const users = require("../controllers/users")
 const passport = require("passport");
 
-router.get("/register",(req,res)=>{
-   res.render("users/register")
-})
+router.get("/register",users.renderRegister)
 
-router.post("/register",catchAsync(async(req,res,next)=>{
-   try{
-      const {email,username,password} = req.body;
-      const user = new User({email,username})
-      const registeredUser = await User.register(user,password);
-      req.login(registeredUser,err=>{
-         if(err)return next(err)
-            console.log(registeredUser);
-            req.flash("success",`WELCOME, ${registeredUser.username.toUpperCase()}`)
-            res.redirect("/movie")
-      })
-   }catch(e){
-      req.flash("error",e.message);
-      res.redirect("/register")
-   }
-}));
+router.post("/register",catchAsync(users.register));
 
-router.get("/login",(req,res)=>{
-   res.render("users/login")
-})
+router.get("/login",users.renderLogin)
 
 // router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
 //  req.flash("success", `WELCOME BACK, ${req.user.username.toUpperCase()}`);
@@ -36,25 +18,7 @@ router.get("/login",(req,res)=>{
 //  res.redirect(redirectUrl)
 // });
 
-router.post("/login", (req, res, next) => {
-   passport.authenticate("local", (err, user, info) => {
-     if (err) return next(err);
-     
-     if (!user) {
-       // User not found or password incorrect
-       req.flash("error", "Invalid credentials. Don’t have an account? Register below.");
-       return res.redirect("/register");
-     }
- 
-     req.login(user, (err) => {
-       if (err) return next(err);
-       req.flash("success", `WELCOME BACK, ${user.username.toUpperCase()}`);
-       const redirectUrl = req.session.returnTo || "/movie";
-       delete req.session.returnTo;
-       return res.redirect(redirectUrl);
-     });
-   })(req, res, next);
- });
+router.post("/login",users.login);
  
 
 // router.get("/logout", (req, res, next) => {
@@ -65,21 +29,7 @@ router.post("/login", (req, res, next) => {
 //    });
 // });
 
-router.get("/logout", (req, res, next) => {
-   const username = req.user?.username; // Get the username before logout
-
-   req.logout(function(err) {
-       if (err) return next(err);
-
-       if (username) {
-           req.flash("success", `GOODBYE, ${username.toUpperCase()}!`);
-       } else {
-           req.flash("success", "GOODBYE!");
-       }
-
-       res.redirect("/movie");
-   });
-});
+router.get("/logout", users.logout);
 
 
 
