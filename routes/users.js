@@ -5,11 +5,27 @@ const User = require("../models/user");
 const users = require("../controllers/users")
 const passport = require("passport");
 
-router.get("/register",users.renderRegister)
 
-router.post("/register",catchAsync(users.register));
+router.route("/register")
+.get(users.renderRegister)
+.post(catchAsync(users.register));
 
-router.get("/login",users.renderLogin)
+
+ router.route("/login")
+ .get(users.renderLogin)
+ .post(users.login);
+
+
+ router.get("/logout", users.logout);
+
+
+
+
+
+
+
+
+
 
 // router.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/login"}),(req,res)=>{
 //  req.flash("success", `WELCOME BACK, ${req.user.username.toUpperCase()}`);
@@ -18,7 +34,7 @@ router.get("/login",users.renderLogin)
 //  res.redirect(redirectUrl)
 // });
 
-router.post("/login",users.login);
+
  
 
 // router.get("/logout", (req, res, next) => {
@@ -29,7 +45,7 @@ router.post("/login",users.login);
 //    });
 // });
 
-router.get("/logout", users.logout);
+
 
 
 

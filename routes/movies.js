@@ -10,21 +10,21 @@ const {isLoggedIn,isAuthor,validateMovie} = require("../middleware")
 
 
 
+router.route("/")
+  .get(catchAsync(movies.index))
+  .post(isLoggedIn,validateMovie,catchAsync(movies.createMovie))
 
 
-router.get("/",catchAsync(movies.index));
+   router.get("/new",isLoggedIn,movies.newForm)
 
-router.get("/new",isLoggedIn,movies.newForm)
+router.route("/:id")
+   .get(catchAsync(movies.showMovie))
+   .put(isLoggedIn,isAuthor,validateMovie,catchAsync(movies.updateMovie))
+   .delete(isLoggedIn,isAuthor,catchAsync(movies.deleteMovie))
 
-router.post("/",isLoggedIn,validateMovie,catchAsync(movies.createMovie))
-
-router.get("/:id",catchAsync(movies.showMovie))
 
 router.get("/:id/edit",isLoggedIn,isAuthor,catchAsync(movies.renderEditForm));
 
-router.put("/:id",isLoggedIn,isAuthor,validateMovie,catchAsync(movies.updateMovie));
-
-router.delete("/:id",isLoggedIn,isAuthor,catchAsync(movies.deleteMovie));
 
 module.exports = router;
 
