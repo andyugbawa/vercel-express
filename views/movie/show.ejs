@@ -47,6 +47,9 @@
               
             <h1>Show Page</h1>
             <h1><%= movie.title %></h1>
+            <% for (let img of movie.images) { %>
+                <img src="<%= img.url %>" alt="Movie Image" width="300">
+            <% } %>
             <h2><%= movie.genre %></h2>
             <p><%= movie.year %></p>
            

@@ -10,6 +10,8 @@ module.exports.newForm = (req,res)=>{
 
 module.exports.createMovie = async(req,res,next)=>{
     const movie = new Film(req.body.movie)
+    movie.images =  req.files.map(f =>({url:f.path,filename: f.filename}))
+    console.log(movie)
     movie.author = req.user._id;
     await movie.save()
     req.flash("success","SUCCESSFULY CREATED A NEW MOVIE!!!")
@@ -34,6 +36,7 @@ module.exports.renderEditForm = async(req,res)=>{
     return res.redirect("/movie")
   }
   res.render("movie/edit",{movie})
+  
 }
 
 module.exports.updateMovie = async(req,res)=>{

@@ -5,15 +5,19 @@ const movies = require("../controllers/movies")
 const ExpressError = require("../utils/ExpressError");
 const Film = require("../models/movie");
 const {movieSchema} = require("../schema.js");
-const {isLoggedIn,isAuthor,validateMovie} = require("../middleware") 
+const {isLoggedIn,isAuthor,validateMovie} = require("../middleware");
+const multer = require("multer") ;
+const{ storage} = require("../cloudinary")
+const upload = multer({storage})
+
 
 
 
 
 router.route("/")
   .get(catchAsync(movies.index))
-  .post(isLoggedIn,validateMovie,catchAsync(movies.createMovie))
-
+  .post(isLoggedIn, upload.array("image"),validateMovie,catchAsync(movies.createMovie))
+  
 
    router.get("/new",isLoggedIn,movies.newForm)
 

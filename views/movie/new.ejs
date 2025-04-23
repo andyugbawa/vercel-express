@@ -19,11 +19,14 @@
 </head>
 <body>
     <h1>NEW PAGE</h1>
-    <form id="movieForm"     action="/movie"  method="POST" >
+    <form id="movieForm"     action="/movie"  method="POST" enctype="multipart/form-data" >
         <div>
             <label for="title">Title</label>
             <input type="text" name="movie[title]" id="title" placeholder="title" required >
            
+        </div>
+        <div>
+            <input type="file" name="image" id="" multiple/>
         </div>
         <div>
             <label for="genre">Genre</label>
