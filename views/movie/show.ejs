@@ -32,6 +32,29 @@
         .Request-rev{
             margin-top: 25px;
         }
+                
+        @media (max-width:500px) {
+            .show-container{
+                gap:10px;
+                padding-left: 20px;
+            }
+            h1{
+            font-size: 16px;    
+        
+        }
+        .show-image{
+            width: 200px;
+            height: 200px;
+        }
+        .request{
+            font-size: 18px;
+        }
+        .card-body{
+            width: 200px;
+            height: 70px;
+            /* border: 2px solid red;  */
+        }
+        }
     </style>
 </head>
 <body>
@@ -48,7 +71,7 @@
             <h1>Show Page</h1>
             <h1>Title:<%= movie.title %></h1>
             <% for (let img of movie.images) { %>
-                <img src="<%= img.url %>" alt="Movie Image" width="300">
+                <img  class="show-image"src="<%= img.url %>" alt="Movie Image" width="300">
             <% } %>
             <h2>Genre:<%= movie.genre %></h2>
             <h2>Year:<%= movie.year %></h2>

@@ -39,35 +39,39 @@
     <%= error %>
   </div>
 <% } %>
+
+   
+     <div class="card-container">
+         <div class="card">
+            <img src="/image/sinners.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card1">
+          <img src="/image/thunderbolts.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card2">
+          <img src="/image/shadow force.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card3">
+          <img src="/image/mission impossible.jpeg" alt="movies" class="image">
+         </div>
+     </div>
+     <div class="card-container1">
+         <div class="card">
+          <img src="/image/working man.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card1">
+          <img src="/image/avatar.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card2">
+          <img src="/image/avengers.jpeg" alt="movies" class="image">
+         </div>
+         <div class="card3">
+             <img src="/image/tron ares.jpeg" alt="movies" class="image">
+            </div>
+     </div>
+
+  
       
-    <div class="card-container">
-        <div class="card">
-           <img src="/image/sinners.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card1">
-         <img src="/image/thunderbolts.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card2">
-         <img src="/image/shadow force.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card3">
-         <img src="/image/mission impossible.jpeg" alt="movies" class="image">
-        </div>
-    </div>
-    <div class="card-container1">
-        <div class="card">
-         <img src="/image/working man.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card1">
-         <img src="/image/avatar.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card2">
-         <img src="/image/avengers.jpeg" alt="movies" class="image">
-        </div>
-        <div class="card3">
-            <img src="/image/tron ares.jpeg" alt="movies" class="image">
-           </div>
-    </div>
     
     <% for(let movie of movies){ %>
         <li><a href="/movie/<%= movie._id %>"><%= movie.title %></a></li>

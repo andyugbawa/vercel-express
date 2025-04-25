@@ -6,6 +6,35 @@
     <title>Document</title>
 
     <style>
+        .new-container{
+            display: flex;
+            justify-content: center;
+            width: 100%; 
+            
+        }
+        input{
+            width: 920px;       
+            padding: 8px;      
+            font-size: 16px;    
+        
+        }
+        .year{
+            margin-top: 30px;
+        }
+        .genre{
+            margin-top: 30px; 
+        }
+        .input-wrapper {
+            /* border: 2px solid #ccc; */
+            /* padding: 8px; */
+            border-radius: 6px;
+            display: inline-block; /* or block if you want it to stretch */
+            width: 98%;
+            box-sizing: border-box;
+            margin-top: 35px;
+}
+
+
          .invalid-input {
             border: 2px solid red;
             background-color: #ffe6e6;
@@ -14,45 +43,51 @@
             border: 2px solid green;
             background-color: #e6ffe6;
         }
+
+                
+        @media (max-width:500px) {
+            input{
+            width: 420px;       
+            padding: 8px;      
+            font-size: 16px;    
+        
+        }
+        }
     </style>
 
 </head>
 <body>
-    <h1>NEW PAGE</h1>
-    <form id="movieForm"     action="/movie"  method="POST" enctype="multipart/form-data" >
-        <div>
-            <label for="title">Title</label>
-            <input type="text" name="movie[title]" id="title" placeholder="title" required >
-           
-        </div>
-        <div>
-            <input type="file" name="image" id="" multiple/>
-        </div>
-        <div>
-            <label for="genre">Genre</label>
-            <input type="text" name="movie[genre]" id="genre" placeholder="genre"required >
-           
-        </div>
-        <div>
-            <label for="year">Year</label>
-            <input type="number" name="movie[year]" id="year" placeholder="year" required>
-           
-        </div>
+     <div class="new-container">
+         <div class="new-content">
+             <h1>NEW PAGE</h1>
+             <form id="movieForm"     action="/movie"  method="POST" enctype="multipart/form-data" >
+                 <div>
+                    <div class="title">
+                        <label for="title">Title</label>
+                    </div>
+                     <input class="input-title" type="text" name="movie[title]" id="title" placeholder="title" required >
+                 </div>
+                 <div class="input-wrapper">
+                     <input type="file" name="image" id="" multiple/>
+                 </div>
+                 <div>
+                    <div class="genre">
+                        <label for="genre">Genre</label>
 
-      
-
-
-
-        <button>Submit</button>
-
-        <a href="/movie">ALL MOVIES</a>
-
-
-
-    </form>
-
-
-        
+                    </div>
+                     <input type="text" name="movie[genre]" id="genre" placeholder="genre"required >
+                 </div>
+                 <div>
+                    <div class="year">
+                        <label for="year">Year</label>
+                    </div>
+                     <input type="number" name="movie[year]" id="year" placeholder="year" required>
+                 </div>
+                 <button>Submit</button>
+                 <a href="/movie">ALL MOVIES</a>
+             </form>
+         </div>
+     </div>
     <script>
         (function () {
             'use strict'
@@ -65,23 +100,20 @@
 
                 inputs.forEach(input => {
                     if (!input.value.trim()) {
-                        // Highlight invalid input
                         input.classList.add('invalid-input');
                         input.classList.remove('valid-input');
                         isValid = false;
                     } else {
-                        // Highlight valid input
                         input.classList.remove('invalid-input');
                         input.classList.add('valid-input');
                     }
                 });
 
                 if (!isValid) {
-                    event.preventDefault(); // Prevent form submission if invalid
+                    event.preventDefault(); 
                 }
             });
 
-            // Optional: Real-time validation on input
             inputs.forEach(input => {
                 input.addEventListener('input', function () {
                     if (input.value.trim()) {
@@ -94,10 +126,6 @@
                 });
             });
         })();
-        
     </script>
-
-
-
 </body>
 </html>
