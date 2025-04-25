@@ -7,6 +7,20 @@
 
     
     <style>
+        .login-container{
+            display: flex;
+            justify-content: center;
+        }
+
+        input{
+            width: 920px;       
+            padding: 8px;      
+            font-size: 16px;    
+        
+        }
+        .password{
+            margin-top: 30px;
+        }
         .invalid-input {
            border: 2px solid red;
            background-color: #ffe6e6;
@@ -19,7 +33,7 @@
 
 </head>
 <body>
-    <h1>LOGIN PAGE</h1>
+   
 
     
 <% if (error && error.length > 0) { %>
@@ -27,18 +41,32 @@
       <%= error %>
     </div>
   <% } %>
-    <form id="movieForm"     action="/login"  method="POST" >
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="username" required >
-           
-        </div>
-      
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password" required>
-        </div>
-        <button>login</button>
+      <div class="login-container">
+          <div class="login-content">
+            <h1>LOGIN PAGE</h1>
+              <form id="movieForm"     action="/login"  method="POST" >
+                  <div>
+                      <label for="username">Username</label>
+                    </div>
+
+                      <input type="text" name="username" id="username" placeholder="username" required >
+                     
+                 
+                
+                  <div>
+                      <div class="password">
+                          <label for="password">Password</label>
+                      </div>
+                      <input type="password" name="password" id="password" placeholder="password" required>
+                  </div>
+                </form>
+
+                  <button>login</button>
+          
+              
+    
+          </div>
+      </div>
 
 
 

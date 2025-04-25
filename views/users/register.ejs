@@ -7,6 +7,25 @@
 
     
     <style>
+         .register-container{
+            display: flex;
+            justify-content: center;
+         }
+
+
+     input{
+            width: 920px;       
+            padding: 8px;      
+            font-size: 16px;    
+        
+        }
+
+        .email{
+            margin-top: 30px;
+        }
+        .password{
+            margin-top: 30px;  
+        }
         .invalid-input {
            border: 2px solid red;
            background-color: #ffe6e6;
@@ -19,7 +38,7 @@
 
 </head>
 <body>
-    <h1>REGISTER</h1>
+    
 
     
 <% if (error && error.length > 0) { %>
@@ -27,22 +46,35 @@
       <%= error %>
     </div>
   <% } %>
-    <form id="movieForm"     action="/register"  method="POST" >
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="username" required >
-           
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="email"required >
-           
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password" required>
-        </div>
-        <button>Register</button>
+
+      <div class="register-container">
+          <div class="register-content">
+            <h1>REGISTER</h1>
+              <form id="movieForm"     action="/register"  method="POST" >
+                  <div>
+                      <label for="username">Username</label>
+                  </div>
+          
+                      <input type="text" name="username" id="username" placeholder="username" required >
+                     
+                  
+                  <div class="email">
+                      <label  for="email">Email</label>
+                  </div>
+                      <input type="email" name="email" id="email" placeholder="email"required >
+                  
+                  <div  class="password">
+                      <label for="password">Password</label>
+                  </div>
+                      <input type="password" name="password" id="password" placeholder="password" required>
+                      <div class="register-btn">
+                          <button>Register</button>
+
+                      </div>
+                </form>
+    
+          </div>
+      </div>
 
 
 
