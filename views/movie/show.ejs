@@ -32,6 +32,35 @@
         .Request-rev{
             margin-top: 25px;
         }
+        .form-btn{
+            padding: 30px 0 0 0px; 
+            display: flex;
+            gap: 20px;
+                
+            }
+            .edit-btn{
+                padding: 5px 20px 5px 20px;
+                font-size: 15px;
+                font-weight: bold;
+                border-radius: 10px;
+            }
+            .delete-btn{
+                font-size: 15px;
+                font-weight: bold;
+                border-radius: 10px; 
+            }
+            .all-btn{
+                padding: 5px 20px 5px 20px;
+                font-size: 15px;
+                font-weight: bold;
+                border-radius: 10px;
+                margin-top: 20px; 
+            }
+            textarea {
+                width: auto;
+                max-width: 100%;
+                box-sizing: border-box;
+  }
                 
         @media (max-width:500px) {
             .show-container{
@@ -52,7 +81,7 @@
             }
             .form-btn{
                 padding: 0 0 0 30px;  
-                /* display: none;  */
+                
             }
             h1{
             font-size: 16px;    
@@ -76,6 +105,13 @@
         .review-content{
             padding: 0 0 0 10px;
         }
+        .all-btn{
+            margin-top: 0;
+        }
+        textarea {
+      width: 100%;
+     cols: auto;
+    }
         }
     </style>
 </head>
@@ -93,8 +129,10 @@
                 
                   <form  action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
                     <div class="form-btn">
-                        <a href="/movie/<%= movie._id %>/edit">Edit</a>
-                        <button>DELETE</button>
+                        <button class="edit-btn">
+                            <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                        </button>
+                        <button class="delete-btn">DELETE</button>
 
                     </div>
                 </form>
@@ -144,7 +182,10 @@
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
             <footer>
-                <a href="/movie">All movies</a>
+                <button class="all-btn">
+                    <a href="/movie">All movies</a>
+
+                </button>
             </footer>
                <h2>Leave a Review</h2>
                <div>
@@ -158,7 +199,7 @@
                    <div>
                        <label for="body">Review</label>
                    </div>
-                <textarea name="review[body]" cols="10" rows="2" id="body" required></textarea>
+                <textarea name="review[body]" cols="30" rows="2" id="body" required></textarea>
                </div>
                <button>Submit</button>
            </form>
