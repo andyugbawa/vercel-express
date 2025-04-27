@@ -38,6 +38,18 @@
                 gap:10px;
                 padding-left: 20px;
             }
+            .show-heading{
+                padding: 0 0 0 30px;
+            }
+            .show-title{
+                padding: 0 0 0 30px;  
+            }
+            .gen-year{
+                padding: 0 0 0 30px;  
+            }
+            .request-tab{
+                padding: 0 0 0 30px;    
+            }
             h1{
             font-size: 16px;    
         
@@ -67,36 +79,54 @@
               <% if (error) { %>
                 <div class="alert error"><%= error %></div>
               <% } %>
-              
-            <h1>Show Page</h1>
-            <h1>Title:<%= movie.title %></h1>
+              <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
+                <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                <button>DELETE</button>
+            </form>
+           
+             <div class="show-heading">
+                 <h1>Show Page</h1>
+
+             </div> 
+             <div class="show-title">
+                 <h1>Title:<%= movie.title %></h1>
+
+             </div>
             <% for (let img of movie.images) { %>
                 <img  class="show-image"src="<%= img.url %>" alt="Movie Image" width="300">
             <% } %>
-            <h2>Genre:<%= movie.genre %></h2>
-            <h2>Year:<%= movie.year %></h2>
-           
-            <% if (movie.author) { %>
-                <p class="request">Requested by: <%= movie.author.username.toUpperCase() %></p>
-              <% } else { %>
-                <p>Uploaded by: Unknown</p>
-              <% } %>
+            <div class="gen-year">
+
+                <h2>Genre:<%= movie.genre %></h2>
+                <h2>Year:<%= movie.year %></h2>
+            </div>
+           <div class="request-tab">
+
+               <% if (movie.author) { %>
+                   <p class="request">Requested by: <%= movie.author.username.toUpperCase() %></p>
+                 <% } else { %>
+                   <p>Uploaded by: Unknown</p>
+                 <% } %>
+           </div>
 
               <% if(currentUser && movie.author.equals(currentUser._id)) {%>
-              <div class="control-buttons">
+              <!-- <div class="control-buttons">
                   <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
                       <a href="/movie/<%= movie._id %>/edit">Edit</a>
                       <button>DELETE</button>
                   </form>
-              </div>
-              <% } %>
+              </div> -->
+              <!-- <% } %>
             <footer>
                 <a href="/movie">All movies</a>
-            </footer>
+            </footer> -->
         </div>
        <div class="review-content">
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
+            <footer>
+                <a href="/movie">All movies</a>
+            </footer>
                <h2>Leave a Review</h2>
                <div>
                    <div>
@@ -109,7 +139,7 @@
                    <div>
                        <label for="body">Review</label>
                    </div>
-                <textarea name="review[body]" cols="30" rows="3" id="body" required></textarea>
+                <textarea name="review[body]" cols="23" rows="3" id="body" required></textarea>
                </div>
                <button>Submit</button>
            </form>
