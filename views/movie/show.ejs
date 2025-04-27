@@ -50,9 +50,16 @@
             .request-tab{
                 padding: 0 0 0 30px;    
             }
+            .form-btn{
+                padding: 0 0 0 30px;  
+                /* display: none;  */
+            }
             h1{
             font-size: 16px;    
         
+        }
+        .image-tab{
+            padding: 0 0 0 25px;
         }
         .show-image{
             width: 200px;
@@ -65,6 +72,9 @@
             width: 200px;
             height: 70px;
             /* border: 2px solid red;  */
+        }
+        .review-content{
+            padding: 0 0 0 10px;
         }
         }
     </style>
@@ -79,10 +89,16 @@
               <% if (error) { %>
                 <div class="alert error"><%= error %></div>
               <% } %>
-              <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
-                <a href="/movie/<%= movie._id %>/edit">Edit</a>
-                <button>DELETE</button>
-            </form>
+             
+                
+                  <form  action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
+                    <div class="form-btn">
+                        <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                        <button>DELETE</button>
+
+                    </div>
+                </form>
+             
            
              <div class="show-heading">
                  <h1>Show Page</h1>
@@ -92,9 +108,12 @@
                  <h1>Title:<%= movie.title %></h1>
 
              </div>
-            <% for (let img of movie.images) { %>
-                <img  class="show-image"src="<%= img.url %>" alt="Movie Image" width="300">
-            <% } %>
+             <div class="image-tab">
+                 <% for (let img of movie.images) { %>
+                     <img  class="show-image"src="<%= img.url %>" alt="Movie Image" width="300">
+                 <% } %>
+
+             </div>
             <div class="gen-year">
 
                 <h2>Genre:<%= movie.genre %></h2>
@@ -139,7 +158,7 @@
                    <div>
                        <label for="body">Review</label>
                    </div>
-                <textarea name="review[body]" cols="23" rows="3" id="body" required></textarea>
+                <textarea name="review[body]" cols="20" rows="2" id="body" required></textarea>
                </div>
                <button>Submit</button>
            </form>
