@@ -60,7 +60,12 @@
                 width: auto;
                 max-width: 100%;
                 box-sizing: border-box;
-  }
+        }
+
+        input[type="range"] {
+            width: 300px; /* Good size for big screens */
+            max-width: 100%; /* So it shrinks on mobile */
+      }
                 
         @media (max-width:500px) {
             .show-container{
