@@ -54,13 +54,20 @@
                 font-size: 15px;
                 font-weight: bold;
                 border-radius: 10px;
-                margin-top: 20px; 
+                margin-top: 30px; 
             }
             textarea {
                 width: auto;
                 max-width: 100%;
                 box-sizing: border-box;
         }
+
+        .movie-buttons{
+            display: flex;
+            gap: 20px;
+        }
+
+
 
         @media (max-width:500px) {
             .show-container{
@@ -83,6 +90,9 @@
                 padding: 0 0 0 30px;  
                 
             }
+            .all-btn{
+                white-space: nowrap;
+            }
             h1{
             font-size: 16px;    
         
@@ -103,7 +113,7 @@
             /* border: 2px solid red;  */
         }
         .review-content{
-            padding: 0 0 0 10px;
+            padding: 20px 0 0 0px;
         }
         .all-btn{
             margin-top: 0;
@@ -126,26 +136,36 @@
                 <div class="alert error"><%= error %></div>
               <% } %>
              
-                
-                  <form  action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
-                    <div class="form-btn">
-                        <button class="edit-btn">
-                            <a href="/movie/<%= movie._id %>/edit">Edit</a>
-                        </button>
-                        <button class="delete-btn">DELETE</button>
+                <div class="movie-buttons">
+                    <% if(currentUser && movie.author.equals(currentUser._id)) {%>
+                    <form  action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
+                      <div class="form-btn">
+                          <button class="edit-btn">
+                              <a href="/movie/<%= movie._id %>/edit">Edit</a>
+                          </button>
+                          <button class="delete-btn">DELETE</button>
+                      </div>
+                  </form>
+                  <% } %>
+  
+                  <footer>
+                      <button class="all-btn">
+                          <a href="/movie">All movies</a>
+                      </button>
+                  </footer>
 
-                    </div>
-                </form>
+                </div>
+
              
            
              <div class="show-heading">
                  <h1>Show Page</h1>
-
              </div> 
+
              <div class="show-title">
                  <h1>Title:<%= movie.title %></h1>
-
              </div>
+           
              <div class="image-tab">
                  <% for (let img of movie.images) { %>
                      <img  class="show-image"src="<%= img.url %>" alt="Movie Image" width="300">
@@ -153,7 +173,6 @@
 
              </div>
             <div class="gen-year">
-
                 <h2>Genre:<%= movie.genre %></h2>
                 <h2>Year:<%= movie.year %></h2>
             </div>
@@ -165,33 +184,21 @@
                    <p>Uploaded by: Unknown</p>
                  <% } %>
            </div>
-
-              <% if(currentUser && movie.author.equals(currentUser._id)) {%>
-              <!-- <div class="control-buttons">
-                  <form action="/movie/<%= movie._id %>?_method=DELETE" method="POST">
-                      <a href="/movie/<%= movie._id %>/edit">Edit</a>
-                      <button>DELETE</button>
-                  </form>
-              </div> -->
-              <!-- <% } %>
-            <footer>
-                <a href="/movie">All movies</a>
-            </footer> -->
         </div>
+
        <div class="review-content">
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
-            <footer>
+            <!-- <footer>
                 <button class="all-btn">
                     <a href="/movie">All movies</a>
-
                 </button>
-            </footer>
+            </footer> -->
+
                <h2>Leave a Review</h2>
                <div>
                    <div>
                        <label for="ratings">Ratings</label>
-       
                    </div>
                    <input type="range" min="1" max="5" name="review[rating]" id="rating">
                </div>
