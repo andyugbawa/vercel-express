@@ -20,7 +20,7 @@
         }
         .show-container{
             display: flex;
-            gap: 90px;
+            gap: 30px;
             justify-content: center;
         }
         .review-content{
@@ -71,20 +71,22 @@
 
         @media (max-width:500px) {
             .show-container{
-                gap:10px;
-                padding-left: 20px;
+                /* gap:10px;
+                padding-left: 20px; */
+                /* flex-direction: column; */
+                
             }
             .show-heading{
-                padding: 0 0 0 30px;
+                padding: 0 0 0 60px;
             }
             .show-title{
-                padding: 0 0 0 30px;  
+                padding: 0 0 0 60px;  
             }
             .gen-year{
-                padding: 0 0 0 30px;  
+                padding: 0 0 0 60px;  
             }
             .request-tab{
-                padding: 0 0 0 30px;    
+                padding: 0 0 0 60px;    
             }
             .form-btn{
                 padding: 0 0 0 30px;  
@@ -98,7 +100,7 @@
         
         }
         .image-tab{
-            padding: 0 0 0 25px;
+            padding: 0 0 0 60px;
         }
         .show-image{
             width: 200px;
@@ -113,7 +115,7 @@
             /* border: 2px solid red;  */
         }
         .review-content{
-            padding: 20px 0 0 0px;
+            padding: 0px 0 0 0px;
         }
         .all-btn{
             margin-top: 0;
@@ -186,15 +188,11 @@
            </div>
         </div>
 
+
+
        <div class="review-content">
            <% if(currentUser) {%>
            <form action="/movie/<%= movie._id %>/review" class="movieForm" method="POST" novalidate>
-            <!-- <footer>
-                <button class="all-btn">
-                    <a href="/movie">All movies</a>
-                </button>
-            </footer> -->
-
                <h2>Leave a Review</h2>
                <div>
                    <div>
