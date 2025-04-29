@@ -25,11 +25,18 @@
     <% } %> 
     <div class="reg-logo">
       <% if(!currentUser){ %>
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+        <button class="register-btn">
+          <a href="/register">Register</a>
+        </button>
+        <button class="login-btn">
+          <a href="/login">Login</a>
+        </button>
       <% }else {%>
         <span><%= currentUser.username.toUpperCase() %></span>
-      <a href="/logout">Logout</a>
+        <button class="logout">
+          <a href="/logout">Logout</a>
+
+        </button>
       <% } %>
 
     </div>
