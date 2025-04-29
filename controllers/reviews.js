@@ -8,7 +8,7 @@ module.exports.createReview = async(req,res)=>{
    movie.reviews.push(review)
    await review.save();
    await movie.save()
-   req.flash("success","CREATED A  NEW REVIEW")
+   req.flash("success","Created A  New Review")
      res.redirect(`/movie/${movie._id}`)
 }
 
@@ -16,6 +16,6 @@ module.exports.deleteReview = async(req,res)=>{
     const {id,reviewId} = req.params;
     await Film.findByIdAndUpdate(id,{$pul:{reviews:reviewId}})
     await Review.findByIdAndDelete(reviewId)
-    req.flash("success","SUCCESSFULLY DELETED A REVIEW")
+    req.flash("success","Successfully Deleted A Review")
     res.redirect(`/movie/${id}`)
   }

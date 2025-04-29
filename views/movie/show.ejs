@@ -72,6 +72,7 @@
         @media (max-width:500px) {
             .show-container{
                  gap:10px;
+                 padding: 30px 0 0 0;
                  /* padding-left: 20px;  */
                 
                 /* background-color: red; */
@@ -104,6 +105,9 @@
             font-size: 16px;    
         
         }
+        .flash-message{
+            padding-left: 60px;
+        }
         .image-tab{
             padding: 0 0 0 30px;
         }
@@ -123,7 +127,7 @@
             width: 100px;
             height: 450px;
             /* background: blue; */
-            padding: 0px 0px 0 0px;
+            padding: 70px 0px 0 0px;
     
         }
         .all-btn{
@@ -139,13 +143,20 @@
 <body>
 
     <div class="show-container">
+       
         <div class="show-content">
-            <% if (success) { %>
-                <div class="alert success"><%= success %></div>
-              <% } %>
-              <% if (error) { %>
-                <div class="alert error"><%= error %></div>
-              <% } %>
+            <div class="flash-message">
+                <p>
+                    <% if (success) { %>
+                       <div class="alert success"><%= success %></div>
+                     <% } %>
+                     <% if (error) { %>
+                       <div class="alert error"><%= error %></div>
+                     <% } %> 
+    
+                </p>
+
+            </div>
              
                 <div class="movie-buttons">
                     <% if(currentUser && movie.author.equals(currentUser._id)) {%>

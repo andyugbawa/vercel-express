@@ -14,7 +14,7 @@ module.exports.createMovie = async(req,res,next)=>{
     console.log(movie)
     movie.author = req.user._id;
     await movie.save()
-    req.flash("success","SUCCESSFULY CREATED A NEW MOVIE!!!")
+    req.flash("success","Successfully Created A New Movie!!!")
     res.redirect(`/movie/${movie._id}`)
 }
 
@@ -32,7 +32,7 @@ module.exports.showMovie = async(req,res)=>{
 module.exports.renderEditForm = async(req,res)=>{
   const movie = await Film.findById(req.params.id);
   if(!movie){
-    req.flash("error", "CANNOT FIND MOVIE")
+    req.flash("error", "Cannot Find Movie")
     return res.redirect("/movie")
   }
   res.render("movie/edit",{movie})
@@ -42,13 +42,13 @@ module.exports.renderEditForm = async(req,res)=>{
 module.exports.updateMovie = async(req,res)=>{
   const{id}=req.params;
   const movie = await Film.findByIdAndUpdate(id, {...req.body.movie})
-  req.flash("success", "SUCCESSFULLY UPDATED MOVIE")
+  req.flash("success", "Successfully Updated  Movie")
   res.redirect(`/movie/${movie._id}`)
 }
 
 module.exports.deleteMovie = async(req,res)=>{
     const{id}=req.params
      await Film.findByIdAndDelete(id)
-     req.flash("success","SUCCESSFULLY DELETED A MOVIE")
+     req.flash("success","Successfully Deleted A Movie")
      res.redirect("/movie")
   }
