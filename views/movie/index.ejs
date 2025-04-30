@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>Home Page</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
    
@@ -49,32 +50,39 @@
 
    
      <div class="card-container">
-         <div class="card">
-            <img src="/image/sinners.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card1">
-          <img src="/image/thunderbolts.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card2">
-          <img src="/image/shadow force.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card3">
-          <img src="/image/mission impossible.jpeg" alt="movies" class="image">
-         </div>
-     </div>
-     <div class="card-container1">
-         <div class="card">
-          <img src="/image/working man.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card1">
-          <img src="/image/avatar.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card2">
-          <img src="/image/avengers.jpeg" alt="movies" class="image">
-         </div>
-         <div class="card3">
-             <img src="/image/tron ares.jpeg" alt="movies" class="image">
+            <div class="card-content">
+              <div class="card1">
+                 <img src="/image/sinners.jpeg" alt="movies" class="image">
+              </div>
+              <div class="card1">
+               <img src="/image/thunderbolts.jpeg" alt="movies" class="image">
+              </div>
+              <div class="card1">
+               <img src="/image/shadow force.jpeg" alt="movies" class="image">
+              </div>
+              <div class="card1">
+               <img src="/image/mission impossible.jpeg" alt="movies" class="image">
+              </div>
+
             </div>
+     </div>
+
+     <div class="card-container1">
+      <div class="card-content1">
+        <div class="card1">
+         <img src="/image/working man.jpeg" alt="movies" class="image">
+        </div>
+        <div class="card1">
+         <img src="/image/avatar.jpeg" alt="movies" class="image">
+        </div>
+        <div class="card1">
+         <img src="/image/avengers.jpeg" alt="movies" class="image">
+        </div>
+        <div class="card1">
+            <img src="/image/tron ares.jpeg" alt="movies" class="image">
+           </div>
+
+      </div>
      </div>
 
   
@@ -91,5 +99,24 @@
             <span class="text-muted"> &copy;Movies 2025</span>
         </div>
     </footer>
+
+    <script>
+      
+   ScrollReveal().reveal(".card-content .card1", {
+      origin: 'left',
+      distance: '300px',
+      delay: 300,
+      duration: 2000,
+      interval: 200
+    });
+
+   ScrollReveal().reveal(".card-content1 .card1", {
+      origin: 'right',
+      distance: '300px',
+      delay: 300,
+      duration: 2000,
+      interval: 200
+    });
+    </script>
 </body>
 </html>

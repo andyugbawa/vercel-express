@@ -24,10 +24,17 @@ h1{
 }
 
 
-.card-container{
+
+.card-content{
     padding: 20px 0 0 0;
     display: flex;
-    gap:5px;
+    gap:5px; 
+}
+
+.card-content1{
+    padding: 20px 0 0 0;
+    display: flex;
+    gap:5px; 
 }
 .card{
     width:350px;
@@ -45,6 +52,7 @@ h1{
     /* border: 2px solid black; */
     border-radius: 10px;
     padding: 0 0 0 5px;
+
     
 }
 
@@ -54,8 +62,10 @@ h1{
     /* border: 2px solid black; */
     border-radius: 10px;
     padding: 0 0 0 5px;
+   
     
 }
+
 
 .card3{
     width:350px;
@@ -70,14 +80,12 @@ h1{
     width:322px;
     height: 450px; 
     border-radius: 10px;
+    transition: transform 0.4s ease; 
+}
+.image:hover{
+    transform: scale(1.1);
 }
 
-
-.card-container1{
-    padding: 20px 0 0 0;
-    display: flex;
-    gap:5px;
-}
 
 
 .footer-container{
@@ -117,13 +125,13 @@ h1{
     h1{
         text-align: center;
     }
-    .card-container{
+    .card-content{
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-left: 20px;
     }
-    .card-container1{
+    .card-content1{
         flex-direction: column;
         justify-content: center;
         align-items: center;

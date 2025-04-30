@@ -14,7 +14,7 @@ const filmSchema = new Schema({
     },
     genre:{
         type:String,
-        enum:["action","thriller","drama","comedy","romance","horror"],
+        enum:["action","thriller","drama","comedy","romance","horror","cartoon"],
         lowercase:true,
        
        
