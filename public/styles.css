@@ -22,6 +22,14 @@
 h1{
     color:red;
 }
+.display{
+    display: flex;
+    justify-content: center;
+    background: grey;
+}
+.movies-display{
+
+}
 
 
 
@@ -42,6 +50,18 @@ h1{
     /* border: 2px solid black; */
     border-radius: 10px;
     
+}
+
+.genre-content{
+    padding: 20px 0 0 0;
+    display: flex;
+     justify-content: space-evenly; 
+}
+
+.genre-content1{
+    padding: 20px 0 0 0;
+    display: flex;
+     justify-content: space-evenly; 
 }
 
 
@@ -136,5 +156,15 @@ h1{
         justify-content: center;
         align-items: center;
         padding-left: 20px;
+    }
+    .genre-content{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .genre-content1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

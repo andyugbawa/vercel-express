@@ -48,6 +48,45 @@
   </div>
 <% } %>
 
+
+       <div class="genre-container">
+           <div class="genre-content">
+            <div class="genre1">
+              <img src="/image/action.jpeg" alt="movies" class="image">
+           </div>
+           
+            <div class="genre1">
+              <img src="/image/thriller.jpeg" alt="movies" class="image">
+           </div>
+            <div class="genre1">
+              <img src="/image/drama.jpeg" alt="movies" class="image">
+           </div>
+
+           </div>
+
+       </div>
+
+       <div class="genre-container">
+           <div class="genre-content1">
+            <div class="genre1">
+              <img src="/image/cartoon.jpeg" alt="movies" class="image">
+           </div>
+           
+            <div class="genre1">
+              <img src="/image/comedy.jpeg" alt="movies" class="image">
+           </div>
+            <div class="genre1">
+              <img src="/image/horror.jpeg" alt="movies" class="image">
+           </div>
+
+           </div>
+
+       </div>
+      <div class="display">
+        <h1 class="movies-display">MOVIES ON DISPLAY</h1>
+
+      </div>
+
    
      <div class="card-container">
             <div class="card-content">
@@ -111,6 +150,22 @@
     });
 
    ScrollReveal().reveal(".card-content1 .card1", {
+      origin: 'right',
+      distance: '300px',
+      delay: 300,
+      duration: 2000,
+      interval: 200
+    });
+
+   ScrollReveal().reveal(".genre-content .genre1", {
+      origin: 'right',
+      distance: '300px',
+      delay: 300,
+      duration: 2000,
+      interval: 200
+    });
+
+   ScrollReveal().reveal(".genre-content1 .genre1", {
       origin: 'right',
       distance: '300px',
       delay: 300,
