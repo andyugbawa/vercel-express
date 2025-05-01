@@ -160,7 +160,24 @@ h1{
 @media (max-width:765px) {
     h1{
         text-align: center;
+        font-size: 12px;
     }
+    .video-camera{
+        padding: 20px 0 0 0;
+        width:20px;
+        height: 30px;
+         
+    }
+    .movie-lead{
+        padding: 20px 0 0 10px;
+    }
+
+    .movie-lead h1 span {
+        color: red;
+        font-size: 20px;
+        font-weight: bold;
+        vertical-align: baseline; 
+      }
     .card-content{
         flex-direction: column;
         justify-content: center;
