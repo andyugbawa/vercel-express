@@ -111,9 +111,6 @@
           <div class="login-content">
             <h1>LOGIN PAGE</h1>
               <form id="movieForm"     action="/login"  method="POST" >
-
-
-
                 <div class="input-group">
                     <input type="text" name="username" id="username" placeholder="" required >
                     <label for="username">Username</label>
@@ -154,7 +151,7 @@
             'use strict'
 
             const form = document.getElementById('movieForm');
-            const inputs = form.querySelectorAll('input');
+            const inputs = form.querySelectorAll(' input');
 
             form.addEventListener('submit', function (event) {
                 let isValid = true;
