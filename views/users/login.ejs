@@ -10,17 +10,53 @@
         .login-container{
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+            flex-direction: column;
         }
 
-        input{
-            width: 920px;       
-            padding: 8px;      
-            font-size: 16px;    
-        
+        .input-group{
+            position: relative;
+            margin: 20px 0;
         }
-        .password{
-            margin-top: 30px;
+
+
+                
+        .input-group label{
+            position: absolute;
+            top:50%;
+            left:5px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: white;
+            padding: 0 5px;
+            pointer-events: none;
+            transition: .5s;
+            color:black;
+            
         }
+                
+        .input-group input{
+            width: 720px;
+            height: 40px;
+            font-size: 16px;
+            color:black;
+            padding: 0 10px;
+            background: transparent;
+            border: 1.2px solid black;
+            outline: none;
+            border-radius: 5px;
+        }
+
+            
+        .input-group input:focus~label,
+        .input-group input:valid~label{
+            top:0;
+            font-size: 15px;
+            background:white;;
+        }
+
+
         .login{
             margin-top: 20px;
         }
@@ -29,7 +65,7 @@
             border-radius: 15px;
             font-weight: bold;   
             font-size: 15px;
-        }
+        } 
 
         .invalid-input {
            border: 2px solid red;
@@ -43,19 +79,17 @@
 
                  
        @media (max-width:768px) {
-            input{
+          .input-group  input{
             width: 350px;       
             padding: 8px;      
             font-size: 16px;    
         
         }
     }
-
-
                 
        @media (max-width:500px) {
-            input{
-            width: 220px;       
+           .input-group input{
+            width: 320px;       
             padding: 8px;      
             font-size: 16px;    
         
@@ -77,24 +111,31 @@
           <div class="login-content">
             <h1>LOGIN PAGE</h1>
               <form id="movieForm"     action="/login"  method="POST" >
-                  <div>
-                      <label for="username">Username</label>
-                    </div>
 
-                      <input type="text" name="username" id="username" placeholder="username" required >
-                     
-                 
+
+
+                <div class="input-group">
+                    <input type="text" name="username" id="username" placeholder="" required >
+                    <label for="username">Username</label>
+                 </div>
+
+                 <div class="input-group">
+                    <input type="password" name="password" id="password" placeholder="" required >
+                    <label for="username">Password</label>
+                 </div>
+
                 
-                  <div>
-                      <div class="password">
-                          <label for="password">Password</label>
-                      </div>
-                      <input type="password" name="password" id="password" placeholder="password" required>
-                  </div>
-
+                 
                    <div class="login">
                        <button class="login-btn">login</button>
                    </div>
+
+               
+
+
+
+
+
                 </form>
 
                  
@@ -153,3 +194,22 @@
     </script>
 </body>
 </html>
+
+
+
+ <!-- <div>
+                      <label for="username">Username</label>
+                    </div>
+
+                      <input type="text" name="username" id="username" placeholder="username" required >
+                     
+                  <div>
+                      <div class="password">
+                          <label for="password">Password</label>
+                      </div>
+                      <input type="password" name="password" id="password" placeholder="password" required>
+                  </div> -->
+
+
+
+                  
