@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 30px;
+    position: relative;
 }
 
 .header{
@@ -19,6 +20,31 @@
     width:40px;
     height: 50px;
     
+}
+
+.mobile-menu {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+.bars{
+    display: none;
+    cursor: pointer;
+    /* display: block; */
+}
+#menu-bar{
+  color: white;
+  font-size: 30px;
+  transition: 0.5s ease;
+}
+.hidden{
+    display: block;
 }
 .movie-lead{
     padding: 12px 0 0 10px;
@@ -43,8 +69,9 @@ h1{
     justify-content: center;
     background: grey;
 }
-.movies-display{
-
+.hidden{
+    display: flex;
+ padding: 0 40px  0 0;
 }
 
 
@@ -137,16 +164,19 @@ h1{
 
 }
 .register-btn{
-    padding: 5px 20px 20px 20px;
+    padding: 5px 10px 10px 10px;
     border-radius: 15px;
     font-weight: bold;
     font-size: 15px;
+    cursor: pointer;
 }
 .login-btn{
-    padding: 5px 20px 20px 20px;
+    padding: 5px 20px 10px 20px;
     border-radius: 15px;
     font-weight: bold;
     font-size: 15px; 
+    cursor: pointer;
+    
 }
 .logout{
     padding: 5px 20px 20px 20px;
@@ -154,6 +184,10 @@ h1{
     font-weight: bold;
     font-size: 15px;  
 }
+
+
+
+  
 
 
 
@@ -178,26 +212,92 @@ h1{
         font-weight: bold;
         vertical-align: baseline; 
       }
+      .display{
+        /* margin-top: 100px */
+      }
     .card-content{
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-left: 20px;
+        /* margin-top: 90px; */
     }
     .card-content1{
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-left: 20px;
+        /* margin-top: 90px; */
     }
     .genre-content{
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+          justify-content: center;
+        align-items: center; 
+        padding: 5px 0 0 0px;
+        width: 100%;
+        /* background: blue; */
+        margin-top: 80px;
+      
     }
     .genre-content1{
         flex-direction: column;
+        padding: 5px 0 0 0px;
+        /* margin-top: 90px; */
         justify-content: center;
         align-items: center;
     }
+    .bars{
+        cursor: pointer;
+        display: block;
+    }
+    
+  .mobile-menu {
+    position: absolute;
+    top: 40px; 
+    right: 0px;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    
+ 
+  }
+  .hidden{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: gray;
+    padding: 10px 0 0 5px;
+    margin: 30px 0 0 0px;
+  }
+    .bars{
+        position: absolute;
+        bottom: 25px;
+        right: 52px;
+        display: block;
+    }
+
+    .register-btn{
+        padding: 5px 10px 10px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .login-btn{
+        padding: 5px 20px 10px 20px;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .log-content{
+      margin-top: 10px;
+    }
+    .movielist-container{
+        /* margin-top: 90px;  */
+    }
+    .footer-container{
+        /* margin-top: 80px; */
+    }
+
 }

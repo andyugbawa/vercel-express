@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home Page</title>
     <script src="https://unpkg.com/scrollreveal"></script>
 </head>
@@ -31,12 +32,40 @@
     <% } %> 
     <div class="reg-logo">
       <% if(!currentUser){ %>
+        <div class="bars">
+          <i class="fa-solid fa-bars" id="menu-bar"></i>
+        </div>
+        
+        
+        <div class="mobile-menu hidden" id="mobile-menu">
+          <div class="reg">
+            <button class="register-btn">
+              <a href="/register">Register</a>
+            </button>
+          </div>
+          <div class="log-content">
+            <button class="login-btn">
+              <a href="/login">Login</a>
+            </button>
+
+          </div>
+        </div>
+        
+
+
+
+
+        <!-- <div class="bars" >
+          <i class="fa-solid fa-bars" id="menu-bar"></i>
+        </div>
+        <div class="mobile-menu hidden" id="mobile-menu">
         <button class="register-btn">
           <a href="/register">Register</a>
         </button>
         <button class="login-btn">
           <a href="/login">Login</a>
         </button>
+      </div> -->
       <% }else {%>
         <span><%= currentUser.username.toUpperCase() %></span>
         <button class="logout">
@@ -131,13 +160,15 @@
 
   
       
-    
-    <% for(let movie of movies){ %>
-        <li><a href="/movie/<%= movie._id %>"><%= movie.title %></a></li>
-     <% } %>
-        <div>
-           <a href="/movie/new">Request a Movie </a>
-       </div>
+    <div class="movielist-container">
+      <% for(let movie of movies){ %>
+          <li><a href="/movie/<%= movie._id %>"><%= movie.title %></a></li>
+       <% } %>
+          <div>
+             <a href="/movie/new">Request a Movie </a>
+         </div>
+
+    </div>
     <footer class="footer-container">
         <div class="container">
             <span class="text-muted"> &copy;Movies 2025</span>
@@ -177,6 +208,26 @@
       duration: 2000,
       interval: 200
     });
+
+    let menuBar = document.getElementById("menu-bar");
+    let mobileMenu = document.getElementById("mobile-menu");
+
+menuBar.addEventListener("click", iconActive);
+
+function iconActive() {
+  if(menuBar.classList.contains("fa-bars")){
+        menuBar.classList.replace("fa-bars","fa-x")
+      }else{
+        menuBar.classList.replace("fa-x","fa-bars")
+      }
+      if(mobileMenu.style.display === "block"){
+        mobileMenu.style.display = "none"
+      }else{
+         mobileMenu.style.display = "block"
+      }
+}
+
+  
     </script>
 </body>
 </html>
