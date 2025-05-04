@@ -6,9 +6,24 @@
     <title>Document</title>
 
     <style>
+        body{
+            background: linear-gradient(30deg,#3e0219 20%,#4d1472 40%,#13011c 40% );
+        }
         .edit-container{
             display: flex;
             justify-content: center;
+        }
+        h1{
+            color:blue
+        }
+        .title-name{
+            color:white;
+        }
+        .genre-name{
+            color:white;
+        }
+        .year-name{
+            color:white;
         }
         input{
             width: 920px;       
@@ -21,6 +36,12 @@
         }
         .genre{
             margin-top: 30px; 
+        }
+        .all-btn{
+            color:black;
+        }
+        .back-btn{
+            color:black;
         }
 
         .invalid-input {
@@ -35,10 +56,12 @@
         padding: 30px 0 0 0;
        }
        .submit-btn{
-        padding: 5px 20px 10px 20px;
+        padding: 10px 20px 10px 20px;
         border-radius: 15px;
         font-weight: bold;
         font-size: 15px; 
+        background: linear-gradient(to bottom, #4CAF50, #1e1717);
+        
        }
        .reverse-btn{
         display: flex;
@@ -54,12 +77,16 @@
         border-radius: 15px;
         font-weight: bold;
         font-size: 15px;
+        background: linear-gradient(-45deg, #e64307 90%, #eae5e5 5%);
+        
+
        }
        .back-movie{
         padding: 5px 20px 10px 20px;
         border-radius: 15px;
         font-weight: bold;
         font-size: 15px;
+        background: linear-gradient(-45deg,rgb(8, 8, 220) 90%,rgb(160, 178, 196) 5%);
        }
                  
        @media (max-width:768px) {
@@ -90,7 +117,7 @@
             <form id="movieForm"  action="/movie/<%= movie._id %>?_method=PUT" method="POST"  >
                 <div>
                     <div class="title">
-                        <label for="title">Title</label>
+                        <label class="title-name" for="title">Title</label>
                     </div>
                     <input type="text" name="movie[title]" id="title" placeholder="title" value="<%=movie.title %>" required>
                 </div>
@@ -98,13 +125,13 @@
                
                 <div>
                     <div class="genre">
-                        <label for="genre">Genre</label>
+                        <label class="genre-name" for="genre">Genre</label>
                     </div>
-                    <input type="text" name="movie[genre]" id="genre" placeholder="genre" value="<%=movie.genre %>" required>
+                    <input  type="text" name="movie[genre]" id="genre" placeholder="genre" value="<%=movie.genre %>" required>
                 </div>
                 <div>
                     <div class="year">
-                        <label for="year">Year</label>
+                        <label class="year-name" for="year">Year</label>
                     </div>
                     <input type="number" name="movie[year]" id="year" placeholder="year" value="<%=movie.year %>" required >
                 </div>
@@ -114,10 +141,10 @@
                     </div>
                      <div class="reverse-btn">
                         <button class="movie-all">
-                            <a href="/movie">ALL MOVIES</a>
+                            <a  class="all-btn" href="/movie">ALL MOVIES</a>
                         </button>
                         <button class="back-movie">
-                            <a href="/movie/<%= movie._id %>">Back to movies</a>
+                            <a  class="back-btn" href="/movie/<%= movie._id %>">Back to movies</a>
                         </button>
                      </div>
                 </div>

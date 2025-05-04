@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            background: linear-gradient(90deg,#e0ccd3 30%,#1c64d9 40%,#d9c5e4 90% ); 
+        }
         .review-heading{
             margin-top: 0px;
         }
@@ -43,11 +46,13 @@
                 font-size: 15px;
                 font-weight: bold;
                 border-radius: 10px;
+                background: linear-gradient(45deg,rgb(48, 190, 48) 90%, white 20%);
             }
             .delete-btn{
                 font-size: 15px;
                 font-weight: bold;
                 border-radius: 10px; 
+                background: linear-gradient(45deg,rgb(225, 5, 30) 90%, white 20%);
             }
             .all-btn{
                 padding: 5px 20px 5px 20px;
@@ -55,6 +60,8 @@
                 font-weight: bold;
                 border-radius: 10px;
                 margin-top: 30px; 
+                background: linear-gradient(45deg,rgb(15, 4, 170) 90%, white 20%);
+               
             }
             textarea {
                 width: auto;
@@ -65,6 +72,9 @@
         .movie-buttons{
             display: flex;
             gap: 20px;
+        }
+        .movie-btn{
+            color: black;
         }
 
 
@@ -172,7 +182,7 @@
   
                   <footer>
                       <button class="all-btn">
-                          <a href="/movie">All movies</a>
+                          <a class ="movie-btn"href="/movie">All movies</a>
                       </button>
                   </footer>
 

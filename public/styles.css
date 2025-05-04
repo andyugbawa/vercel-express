@@ -1,10 +1,12 @@
-
-
+body{
+    background: linear-gradient(45deg,#330416 20%,#9a63be 40%,#190125 40% );
+}
 
 
 .nav-container{
     height: 50px;
-    background: grey;
+    /* background: grey; */
+    background: linear-gradient(45deg,#330416 20%,#9a63be 40%,#190125 40% );
     display: flex;
     justify-content: space-between;
     padding-bottom: 30px;
@@ -19,6 +21,7 @@
     padding: 20px 0 0 0;
     width:40px;
     height: 50px;
+    filter: invert(1) brightness(2);
     
 }
 
@@ -196,7 +199,7 @@ h1{
         position: fixed;
         top: 0;
         width: 98%;
-        background: grey; 
+        background: linear-gradient(45deg,#330416 20%,#9a63be 40%,#190125 40% );
         z-index: 999;
         transition: top 0.3s ease-in-out;
       }
@@ -274,7 +277,8 @@ h1{
     display: none;
     flex-direction: column;
     gap: 10px;
-    background: gray;
+    /* background: gray; */
+    background: linear-gradient(45deg,#330416 20%,#9a63be 40%,#190125 40% );
     padding: 10px 0 0 5px;
     margin: 30px 0 0 0px;
   }

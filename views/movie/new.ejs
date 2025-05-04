@@ -6,11 +6,26 @@
     <title>Document</title>
 
     <style>
+         body{
+            background: linear-gradient(30deg,#3e0219 20%,#d6b6eb 40%,#be73e4 40% );
+        }
+        h1{
+            color:blue;
+        }
         .new-container{
             display: flex;
             justify-content: center;
             width: 100%; 
             
+        }
+        .title-name{
+            color:white;
+        }
+        .genre-name{
+            color:white;
+        }
+        .year-name{
+            color:white;
         }
         input{
             width: 920px;       
@@ -42,6 +57,8 @@
          .submit-btn{
             padding: 5px 25px 5px 25px;
             border-radius: 20px;
+            background: linear-gradient(to bottom, #4CAF50, #1e1717);
+            font-weight: bold;
          }
          .home-movie{
             margin-top: 7px;
@@ -49,6 +66,11 @@
          .home-btn{
             padding: 10px 20px 10px 20px;
             border-radius: 20px;
+            background: linear-gradient(-45deg, #e64307 90%, #eae5e5 5%);
+         }
+         .all-btn{
+            font-weight: bold;
+            color: black;
          }
 
 
@@ -90,7 +112,7 @@
              <form id="movieForm"     action="/movie"  method="POST" enctype="multipart/form-data" >
                  <div>
                     <div class="title">
-                        <label for="title">Title</label>
+                        <label class="title-name" for="title">Title</label>
                     </div>
                      <input class="input-title" type="text" name="movie[title]" id="title" placeholder="title" required >
                  </div>
@@ -99,14 +121,14 @@
                  </div>
                  <div>
                     <div class="genre">
-                        <label for="genre">Genre</label>
+                        <label class="genre-name" for="genre">Genre</label>
 
                     </div>
                      <input type="text" name="movie[genre]" id="genre" placeholder="genre"required >
                  </div>
                  <div>
                     <div class="year">
-                        <label for="year">Year</label>
+                        <label class="year-name" for="year">Year</label>
                     </div>
                      <input type="number" name="movie[year]" id="year" placeholder="year" required>
                  </div>
@@ -115,7 +137,7 @@
                      <button class="submit-btn">Submit</button>
                      <div class="home-movie">
                         <button class="home-btn">
-                            <a href="/movie">ALL MOVIES</a>
+                            <a class="all-btn" href="/movie">ALL MOVIES</a>
                         </button>
 
                      </div>
