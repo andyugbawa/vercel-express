@@ -41,7 +41,7 @@
 #menu-bar{
   color: white;
   font-size: 30px;
-  transition: 0.5s ease;
+  transition: 0.3s ease-in-out;
 }
 .hidden{
     display: block;
@@ -192,6 +192,15 @@ h1{
 
 
 @media (max-width:765px) {
+    .nav-container {
+        position: fixed;
+        top: 0;
+        width: 98%;
+        background: grey; 
+        z-index: 999;
+        transition: top 0.3s ease-in-out;
+      }
+      
     h1{
         text-align: center;
         font-size: 12px;
