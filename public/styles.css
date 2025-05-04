@@ -12,6 +12,9 @@ body{
     padding-bottom: 30px;
     position: relative;
 }
+span{
+    color: white;
+}
 
 .header{
     display: flex;
