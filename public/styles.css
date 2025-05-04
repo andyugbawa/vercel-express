@@ -15,6 +15,9 @@ body{
 span{
     color: white;
 }
+p{
+    color: white;   
+}
 
 .header{
     display: flex;
