@@ -294,6 +294,7 @@ h1{
     gap: 10px;
     padding: 10px 20px;
     border-radius: 5px;
+    transition: all 2s ;
     
  
   }
@@ -305,6 +306,9 @@ h1{
     background: linear-gradient(45deg,#330416 20%,#9a63be 40%,#190125 40% );
     padding: 10px 0 0 5px;
     margin: 30px 0 0 0px;
+    /* transition: all 2s ; */
+
+   
   }
     .bars{
         position: absolute;
